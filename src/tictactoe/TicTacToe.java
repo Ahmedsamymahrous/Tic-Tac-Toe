@@ -5,6 +5,9 @@
  */
 package tictactoe;
 
+import dbconnection.DBMS;
+import dbconnection.Player;
+import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +22,7 @@ public class TicTacToe extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MatchGround.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -30,8 +33,10 @@ public class TicTacToe extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+        //launch(args);
+        DBMS db = new DBMS();
+        List<Player> players = db.SelectPlayer();
     }
     
 }
