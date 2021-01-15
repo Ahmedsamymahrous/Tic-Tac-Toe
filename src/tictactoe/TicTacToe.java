@@ -22,7 +22,7 @@ public class TicTacToe extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -34,7 +34,7 @@ public class TicTacToe extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-        //launch(args);
+        launch(args);
         DBMS db = new DBMS();
         List<Player> players = db.SelectPlayer();
     }
