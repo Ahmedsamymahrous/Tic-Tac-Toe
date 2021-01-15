@@ -48,12 +48,46 @@ public class MatchGroundController implements Initializable {
     @FXML
     private ListView<?> listView;
 
-    public void PlayMatch(ActionEvent event) throws IOException
+    public void playMatch(ActionEvent event) throws IOException
     {
         Parent play = FXMLLoader.load(getClass().getResource("/fxmls/PlayWithFriend.fxml"));
         Scene playMatch = new Scene(play);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(playMatch);
+        window.show();
+    }
+    public void profileButtonPushed(ActionEvent event) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Profile.fxml"));
+        Scene scene = new Scene(root);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(scene);
+        window.show();
+    }
+    public void logoutButtonPushed(ActionEvent event) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
+        Scene scene = new Scene(root);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(scene);
+        window.show();
+    }
+    
+    public void backButtonPushed(ActionEvent event) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
+        Scene scene = new Scene(root);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(scene);
         window.show();
     }
     /**

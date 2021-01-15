@@ -30,7 +30,7 @@ public class HomeController  implements Initializable {
      private Button singupButton;
     public void loginButtonPushed(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/MatchGround.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
         Scene scene = new Scene(root);
         
         //This line gets the Stage information
@@ -41,7 +41,7 @@ public class HomeController  implements Initializable {
     }
      public void signupButtonPushed(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/MatchGround.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/SignUp.fxml"));
         Scene scene = new Scene(root);
         
         //This line gets the Stage information

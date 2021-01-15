@@ -131,7 +131,7 @@ public class DBMS {
     public void deletePlayer(String pEmail)
     {
         try {
-            PreparedStatement pdel = conn.prepareStatement("DELETE FROM playre WHERE email=?");
+            PreparedStatement pdel = conn.prepareStatement("DELETE FROM player WHERE email=?");
             pdel.setString(1,pEmail);
             
             int status = pdel.executeUpdate();

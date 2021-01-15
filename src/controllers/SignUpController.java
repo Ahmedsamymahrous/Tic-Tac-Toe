@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package signup;
+package controllers;
 
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
@@ -28,19 +28,11 @@ public class SignUpController implements Initializable {
     @FXML
     private Label labelPassword;
     @FXML
-    private TextField tfName;
-    @FXML
     private TextField tfEmail;
     @FXML
     private PasswordField tfPassword;
     @FXML
-    private Label labelRePassword;
-    @FXML
-    private PasswordField tfRepassword;
-    @FXML
     private Button btnSignUp;
-    @FXML
-    private JFXButton btnSignIn;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
