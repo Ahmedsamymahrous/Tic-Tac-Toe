@@ -190,7 +190,7 @@ public class DBMS {
     {
         try {
             //play1ID,player2ID,playr1Score,player2Score
-        PreparedStatement pup = conn.prepareStatement("UPDATE player  SET playr1Score = ? ,player2Score = ? WHERE gameID = ?");
+        PreparedStatement pup = conn.prepareStatement("UPDATE games SET playr1Score = ? ,player2Score = ? WHERE gameID = ?");
         pup.setInt(1,gID);
         pup.setInt(2,p1_score);
         pup.setInt(3,p2_score);
