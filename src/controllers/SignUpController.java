@@ -81,7 +81,12 @@ public class SignUpController implements Initializable {
                     System.out.println("inside isExist");
                     boolean bol = db.newPlayer(p);
                     System.out.println("after new player " + bol);
-                    Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setContentText("Account created successfully");
+                    alert.showAndWait();
+                    
+                    Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
                     Scene scene = new Scene(root);
 
                     //This line gets the Stage information
@@ -107,10 +112,9 @@ public class SignUpController implements Initializable {
     }
     
     public void signInAction(ActionEvent event) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
         Scene scene = new Scene(root);
         
-        //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(scene);
@@ -141,6 +145,7 @@ public class SignUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
     
 }

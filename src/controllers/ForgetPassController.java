@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import dbconnection.LoginDB;
+import dbconnection.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
@@ -54,38 +56,59 @@ public class ForgetPassController implements Initializable {
     }    
 
     @FXML
-    public void resetButtonPushed(ActionEvent event)  throws IOException
+    public void resetButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
     {
-         if(validateEmailPattern(tfEmail.getText().trim()))
+         if(validateEmailPattern(tfEmail.getText()))
         {
-            sendEmail(event);
+                   Player p = new Player(tfEmail.getText());
+                  LoginDB db = new LoginDB();
+                  db.Connect();
+                  System.out.println("isEz"+db.isExist(p,false));
+                  if(db.isExist(p,false))
+                  {
+                             sendEmail(event,p.getEmail());
+                  }
+                  else
+                  {
+                      alertError("Invalid","Email doesn't exist");
+                       clearNodes();
+                  }
         }
          else
         {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Error");
-                alert.setContentText("Invalid email pattern");
-                alert.showAndWait();
+                alertError("Invalid","Invalid email pattern");
+                 clearNodes();
         }
     }
   
     private boolean validateEmailPattern(String email)
     {
-             String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+             String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(email);
             
             return matcher.matches();
-     
     }
-    private void sendEmail(ActionEvent event) throws IOException
+    private void clearNodes()
     {
-        String userName = new String("aya145356"); //change to sender username 
-            String password = new String("HelloSam2016");  //change to sender pass
+        tfEmail.clear();
+    }
+ private void alertError(String title , String msg)
+ {
+       Alert alert ;
+        alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+    private void sendEmail(ActionEvent event,String playerEmail) throws IOException
+    {
+        String userName = new String("tictactoegame660"); //change to sender username 
+            String password = new String("intake41");  //change to sender pass
             String sendingHost = "smtp.gmail.com";     
             int sendingPort = 465;
-            String from = new String("aya145356@gmail.com");       //change to sender email
-            String to = new String("ayaabdo729@gmail.com");           //change to receiver email
+            String from = new String("tictactoegame660@gmail.com");       //change to sender email
+            String to = new String(playerEmail);           //change to receiver email
             String subject = new String("Reset password");
             String text = new String("12345 this is a temp password");
             String receivingHost;

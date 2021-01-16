@@ -5,6 +5,9 @@
  */
 package controllers;
 
+import dbconnection.LoginDB;
+import dbconnection.Player;
+import dbconnection.SignUpDB;
 import java.io.*;
 import java.net.URL;
 import java.util.regex.*;
@@ -38,33 +41,43 @@ public class LoginController implements Initializable {
     @FXML
     private Button btnSignUp;
     @FXML
-    public void signInButtonPushed(ActionEvent event) throws IOException
+    public void signInButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
     {
         //Vlidate entered email pattern and password
-        if(validateEmailPattern(tfEmail.getText().trim()))
+        if(validateEmailPattern(tfEmail.getText()))
         {
               if(!tfPassword.getText().trim().isEmpty())
-                     moveToPlayingModeOptions(event);
+              {
+                   Player p = new Player(tfEmail.getText(),tfPassword.getText());
+                  LoginDB db = new LoginDB();
+                  db.Connect();
+                  
+                  if(db.isExist(p,true))
+                  {
+                         moveToPlayingModeOptions(event);
+                  }
+                  else
+                  {
+                      alertError("Invalid","Wrong email or password");
+                       clearNodes();
+                  }
+              }
               else
               {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                  alert.setTitle("Error");
-                  alert.setContentText("Password field can't be empty!");
-                  alert.showAndWait();
+                  alertError("Invalid password","Password field can't be empty!");
+                   clearNodes();
               }
         }
         else
         {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Error");
-                alert.setContentText("Invalid email pattern");
-                alert.showAndWait();
+                alertError("Invalid email","Invalid email pattern");
+                 clearNodes();
         }
     }
     @FXML
     private boolean validateEmailPattern(String email)
     {
-             String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+             String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(email);
             
@@ -72,40 +85,40 @@ public class LoginController implements Initializable {
      
     }
    @FXML
-    public void moveToPlayingModeOptions(ActionEvent event) throws IOException
+    private void moveToPlayingModeOptions(ActionEvent event) throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
         Scene scene = new Scene(root);
-        
-        //This line gets the Stage information
+
         Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
         
         window.setScene(scene);
         window.show();
     }
    @FXML
-    public void forgetPasswordButtonPushed(ActionEvent event)  throws IOException
+    private void forgetPasswordButtonPushed(ActionEvent event)  throws IOException
     {
-       
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-             alert.setContentText("Enter ur email");
-                //alert.setResult(null);
-               String s = new String();
-               s += alert.showAndWait().get().getText();
-               if(s.equals("OK"))
-                {
-                    Parent root = FXMLLoader.load(getClass().getResource("/fxmls/ForgetPass.fxml"));
-                    Scene scene = new Scene(root);
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/ForgetPass.fxml"));
+            Scene scene = new Scene(root);
 
-                    Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+            Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
 
-                    window.setScene(scene);
-                    window.show();
-                    
-                }
-             
+            window.setScene(scene);
+            window.show();
     }  
-  
+  private void clearNodes()
+    {
+        tfEmail.clear();
+        tfPassword.clear();
+    }
+ private void alertError(String title , String msg)
+ {
+       Alert alert ;
+        alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
     /**
      * Initializes the controller class.
      */

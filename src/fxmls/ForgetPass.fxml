@@ -25,7 +25,7 @@
          <image>
             <Image url="@../icons/email_48px.png" />
          </image></ImageView>
-      <Button fx:id="resetbtn" layoutX="241.0" layoutY="278.0" mnemonicParsing="false" onAction="#resetButtonPushed" prefHeight="37.0" prefWidth="118.0" text="Reset" textFill="#4059a9">
+      <Button fx:id="resetbtn" defaultButton="true" layoutX="241.0" layoutY="278.0" mnemonicParsing="false" onAction="#resetButtonPushed" prefHeight="37.0" prefWidth="118.0" text="Reset" textFill="#4059a9">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>

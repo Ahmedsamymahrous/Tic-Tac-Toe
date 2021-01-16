@@ -14,7 +14,7 @@
    <top>
       <AnchorPane prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #daede9;" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton fx:id="logoutbtn" layoutX="525.0" layoutY="6.0" onAction="#logoutOrBackButtonPushed" text="LogOut" textFill="#4059a9" underline="true">
+            <JFXButton fx:id="logoutbtn" layoutX="525.0" layoutY="6.0" onAction="#logoutButtonPushed" text="LogOut" textFill="#4059a9" underline="true">
                <font>
                   <Font size="14.0" />
                </font>
@@ -38,12 +38,12 @@
             <JFXTextField fx:id="tfName" layoutX="233.0" layoutY="173.0" />
             <JFXTextField fx:id="tfEmail" layoutX="233.0" layoutY="223.0" />
             <JFXTextField fx:id="tfPassword" layoutX="233.0" layoutY="269.0" />
-            <Button fx:id="savebtn" layoutX="495.0" layoutY="267.0" mnemonicParsing="false" onAction="#saveButtonPushed" prefHeight="26.0" prefWidth="79.0" text="Save" textFill="#4059a9">
+            <Button fx:id="savebtn" defaultButton="true" layoutX="495.0" layoutY="267.0" mnemonicParsing="false" onAction="#saveButtonPushed" prefHeight="26.0" prefWidth="79.0" text="Save" textFill="#4059a9">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <JFXButton fx:id="btnBackHome" layoutX="24.0" layoutY="25.0" onAction="#logoutOrBackButtonPushed" text="&lt; Back Home" textFill="#4059a9" />
+            <JFXButton fx:id="btnBackHome" layoutX="24.0" layoutY="25.0" onAction="#backButtonPushed" text="&lt; Back Home" textFill="#4059a9" />
          </children>
       </AnchorPane>
    </center>

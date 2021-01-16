@@ -81,7 +81,6 @@ public class PlayingModeController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Profile.fxml"));
         Scene scene = new Scene(root);
         
-        //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(scene);
