@@ -23,7 +23,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="labelName" layoutX="75.0" layoutY="143.0" text="E-Mail" textFill="#4059a9">
+      <Label fx:id="labelEmail" layoutX="75.0" layoutY="143.0" text="E-Mail" textFill="#4059a9">
          <font>
             <Font size="18.0" />
          </font>
@@ -59,12 +59,12 @@
             <Image url="@../icons/icons8_lock_52px.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnSignUp" layoutX="241.0" layoutY="278.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="118.0" text="SignUp" textFill="#4059a9">
+      <Button fx:id="btnSignUp" layoutX="241.0" layoutY="278.0" mnemonicParsing="false" onAction="#signUpAction" prefHeight="37.0" prefWidth="118.0" text="SignUp" textFill="#4059a9">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Button>
-      <JFXButton fx:id="btnSignIn" layoutX="258.0" layoutY="332.0" prefHeight="27.0" prefWidth="84.0" text="SignIn" textFill="#4059a9" underline="true">
+      <JFXButton fx:id="btnSignIn" layoutX="258.0" layoutY="332.0" onAction="#signInAction" prefHeight="27.0" prefWidth="84.0" text="SignIn" textFill="#4059a9" underline="true">
          <font>
             <Font size="14.0" />
          </font>

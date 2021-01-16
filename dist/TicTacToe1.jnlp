@@ -8,14 +8,15 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="TicTacToe1.jar" size="161015" download="eager" />
     <jar href="lib\dsn.jar" size="19171" download="eager" />
     <jar href="lib\gimap.jar" size="14769" download="eager" />
+=======
+    <jar href="TicTacToe1.jar" size="161623" download="eager" />
+>>>>>>> f71521062797cae165c9c40156649a70c81e4ad1
     <jar href="lib\jfoenix-8.0.10.jar" size="2710207" download="eager" />
     <jar href="lib\mail.jar" size="521000" download="eager" />
-    <jar href="lib\mailapi.jar" size="279893" download="eager" />
-    <jar href="lib\pop3.jar" size="44405" download="eager" />
-    <jar href="lib\smtp.jar" size="52869" download="eager" />
     <jar href="lib\sqlite-jdbc-3.27.2.1.jar" size="6012084" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="TicTacToe1" >

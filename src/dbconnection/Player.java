@@ -27,6 +27,12 @@ public class Player {
         this.status = status;
         this.avatar = avatar;
     }
+    
+    public Player(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
     public int getPlayerID() {
         return playerID;
