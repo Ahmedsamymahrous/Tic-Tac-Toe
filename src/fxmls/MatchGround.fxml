@@ -85,12 +85,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="120" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <Label fx:id="scorelbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="120" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#profileButtonPushed" prefHeight="73.0" prefWidth="137.0" style="-fx-background-color: #5389a6;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="profileiconbtn" mnemonicParsing="false" onAction="#profileButtonPushed" prefHeight="73.0" prefWidth="137.0" style="-fx-background-color: #5389a6;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fx:id="icon" fitHeight="84.0" fitWidth="63.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>

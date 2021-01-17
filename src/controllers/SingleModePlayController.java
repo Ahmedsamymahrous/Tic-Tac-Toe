@@ -77,6 +77,7 @@ public class SingleModePlayController implements Initializable {
     @FXML
     private void leaveMatchButtonPushed(ActionEvent event)  throws IOException
     {
+        //at this stage -> we should record the score in the db
          Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
             Scene scene = new Scene(root);
 
