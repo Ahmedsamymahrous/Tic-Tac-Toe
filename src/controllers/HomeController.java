@@ -28,7 +28,8 @@ public class HomeController  implements Initializable {
     private Button loginButton;
      @FXML
      private Button singupButton;
-    public void loginButtonPushed(ActionEvent event) throws IOException
+    @FXML
+    private void loginButtonPushed(ActionEvent event) throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
         Scene scene = new Scene(root);
@@ -39,7 +40,8 @@ public class HomeController  implements Initializable {
         window.setScene(scene);
         window.show();
     }
-     public void signupButtonPushed(ActionEvent event) throws IOException
+    @FXML
+     private void signupButtonPushed(ActionEvent event) throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/SignUp.fxml"));
         Scene scene = new Scene(root);

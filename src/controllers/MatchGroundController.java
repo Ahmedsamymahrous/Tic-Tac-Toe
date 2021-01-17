@@ -47,7 +47,7 @@ public class MatchGroundController implements Initializable {
     private Button chatBtn;
     @FXML
     private ListView<?> listView;
-
+@FXML
     public void playMatch(ActionEvent event) throws IOException
     {
         Parent play = FXMLLoader.load(getClass().getResource("/fxmls/PlayWithFriend.fxml"));
@@ -56,6 +56,7 @@ public class MatchGroundController implements Initializable {
         window.setScene(playMatch);
         window.show();
     }
+    @FXML
     public void profileButtonPushed(ActionEvent event) throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Profile.fxml"));
@@ -67,6 +68,7 @@ public class MatchGroundController implements Initializable {
         window.setScene(scene);
         window.show();
     }
+    @FXML
     public void logoutButtonPushed(ActionEvent event) throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
@@ -78,7 +80,7 @@ public class MatchGroundController implements Initializable {
         window.setScene(scene);
         window.show();
     }
-    
+    @FXML
     public void backButtonPushed(ActionEvent event) throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));

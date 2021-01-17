@@ -59,7 +59,15 @@ public class PlayingModeController implements Initializable {
     }
 
     @FXML
-    private void singleModeButtonPushed(ActionEvent event) {
+    private void singleModeButtonPushed(ActionEvent event) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/SingleModePlay.fxml"));
+            Scene scene = new Scene(root);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(scene);
+            window.show();
     }
 
     @FXML

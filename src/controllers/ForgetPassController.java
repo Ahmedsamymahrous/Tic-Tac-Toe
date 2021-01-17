@@ -56,7 +56,7 @@ public class ForgetPassController implements Initializable {
     }    
 
     @FXML
-    public void resetButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
+    private void resetButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
     {
          if(validateEmailPattern(tfEmail.getText()))
         {

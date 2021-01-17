@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
     @FXML
     private Button btnSignUp;
     @FXML
-    public void signInButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
+    private void signInButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
     {
         //Vlidate entered email pattern and password
         if(validateEmailPattern(tfEmail.getText()))
@@ -74,7 +74,6 @@ public class LoginController implements Initializable {
                  clearNodes();
         }
     }
-    @FXML
     private boolean validateEmailPattern(String email)
     {
              String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";

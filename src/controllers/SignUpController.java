@@ -55,15 +55,16 @@ public class SignUpController implements Initializable {
     
     
     
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
     Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-    public static boolean validate(String emailStr) {
+    private static boolean validate(String emailStr) {
             Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
             return matcher.find();
     }
-    
-    public void signUpAction(ActionEvent event) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+    @FXML
+    private void signUpAction(ActionEvent event) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException
+    {
         if(!validate(tfEmail.getText()))
         {
             //email is not valid
@@ -111,7 +112,9 @@ public class SignUpController implements Initializable {
         }
     }
     
-    public void signInAction(ActionEvent event) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+    @FXML
+    private void signInAction(ActionEvent event) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException
+    {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
         Scene scene = new Scene(root);
         
@@ -120,7 +123,7 @@ public class SignUpController implements Initializable {
         window.setScene(scene);
         window.show();
     }
-    public void alertError(String title , String msg){
+    private void alertError(String title , String msg){
         Alert alert ;
         alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -129,7 +132,7 @@ public class SignUpController implements Initializable {
         alert.showAndWait();
     }
     
-    public void clearNodes()
+    private void clearNodes()
     {
         tfName.clear();
         tfEmail.clear();

@@ -37,7 +37,7 @@
          <image>
             <Image url="@../icons/icons8_lock_52px.png" />
          </image></ImageView>
-      <Button fx:id="btnSignIn" defaultButton="true" layoutX="241.0" layoutY="278.0" mnemonicParsing="false" onAction="#signInButtonPushed" prefHeight="37.0" prefWidth="118.0" text="SignIn" textFill="#4059a9">
+      <Button fx:id="btnSignIn" alignment="CENTER" defaultButton="true" layoutX="241.0" layoutY="278.0" mnemonicParsing="false" onAction="#signInButtonPushed" prefHeight="37.0" prefWidth="118.0" text="SignIn" textFill="#4059a9">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>

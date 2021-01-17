@@ -6,7 +6,6 @@
 package controllers;
 
 import java.io.IOException;
-import tictactoe.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,19 +18,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author Mohab
+ * @author Aya Abdulsamie
  */
-public class PlayWithFriendController implements Initializable {
+public class SingleModePlayController implements Initializable {
 
     @FXML
     private ImageView player1Icone;
@@ -43,8 +39,6 @@ public class PlayWithFriendController implements Initializable {
     private Label player2Name;
     @FXML
     private Hyperlink player1MainScore;
-    @FXML
-    private Hyperlink player2MainScore;
     @FXML
     private Label player1Score;
     @FXML
@@ -70,25 +64,20 @@ public class PlayWithFriendController implements Initializable {
     @FXML
     private Button btn9;
     @FXML
-    private Button chatBtn;
-    @FXML
     private Button leaveBtn;
-    @FXML
-    private Pane chatRoom;
-    @FXML
-    private TextArea chatView;
-    @FXML
-    private TextField message;
-    @FXML
-    private Button sendBtn;
-    private boolean chatOn = false;
+
     /**
      * Initializes the controller class.
      */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+
     @FXML
-    private void leaveMatchButtonPushed(ActionEvent event) throws IOException
+    private void leaveMatchButtonPushed(ActionEvent event)  throws IOException
     {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
             Scene scene = new Scene(root);
 
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -96,21 +85,5 @@ public class PlayWithFriendController implements Initializable {
             window.setScene(scene);
             window.show();
     }
-    @FXML
-    private void Chat(ActionEvent event) {
-        if(chatOn == true)
-        {   
-            chatOn = false;
-        }else if(chatOn == false)
-        {
-            chatOn = true;
-        }
-        chatRoom.setVisible(chatOn);
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
-   
+    
 }
