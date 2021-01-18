@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import dbconnection.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -65,10 +66,18 @@ public class SingleModePlayController implements Initializable {
     private Button btn9;
     @FXML
     private Button leaveBtn;
-
+    private Player p;
     /**
      * Initializes the controller class.
      */
+    public void init(Player player)
+    {
+        p = player;
+        player1Name.setText(player.getName());
+        player1MainScore.setText(Integer.toString(player.getMain_score()));
+        player1Score.setText("0");
+         player2Score.setText("0");
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -77,9 +86,15 @@ public class SingleModePlayController implements Initializable {
     @FXML
     private void leaveMatchButtonPushed(ActionEvent event)  throws IOException
     {
-        //at this stage -> we should record the score in the db
-         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
+            Parent root = loader.load();
+
             Scene scene = new Scene(root);
+
+            //access the controller and call a method
+            PlayingModeController controller = loader.getController();
+            controller.init(p);
 
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 

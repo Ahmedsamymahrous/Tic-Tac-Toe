@@ -26,6 +26,7 @@ public class SignUpDB {
 
     ResultSet rs,rsgame;
     PreparedStatement ps,psgame;
+    Player player;
      //this method to connect to DB only
     public Connection Connect() throws ClassNotFoundException, InstantiationException, IllegalAccessException
     {
@@ -50,13 +51,11 @@ public class SignUpDB {
         }
 
     }
-        
-    
     
     public boolean isExist(Player p) throws ClassNotFoundException, IllegalAccessException, InstantiationException {     
         try {
             conn = this.Connect();
-            PreparedStatement pins = conn.prepareStatement("Select playerID From player where email=?");
+            PreparedStatement pins = conn.prepareStatement("Select * From player where email=?");
             pins.setString(1,p.getEmail());
             
        
@@ -64,7 +63,9 @@ public class SignUpDB {
             // loop through the result set
             if(rs.next())
             {
-                //this.closeConnection();
+                player = new Player(rs.getInt("playerID"),rs.getString("name")
+                            , rs.getString("email"),rs.getString("password")
+                            ,rs.getInt("main_score"),rs.getString("status"),rs.getString("avatar"));
                 return true;
             }
             
@@ -75,8 +76,6 @@ public class SignUpDB {
         //this.closeConnection();
         return false;
     }
-
-
 
     public boolean newPlayer(Player p) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -99,5 +98,9 @@ public class SignUpDB {
         this.closeConnection();
         return false;
     }
+    public Player getPlayerData()
+     {           
+           return player;
+     }
     
 }

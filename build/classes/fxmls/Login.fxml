@@ -17,7 +17,7 @@
             <Font name="Arial Bold Italic" size="44.0" />
          </font>
       </Label>
-      <Label fx:id="labelName" layoutX="75.0" layoutY="143.0" text="E-Mail" textFill="#4059a9">
+      <Label fx:id="labelEmail" layoutX="75.0" layoutY="143.0" text="E-Mail" textFill="#4059a9">
          <font>
             <Font size="18.0" />
          </font>
@@ -37,12 +37,18 @@
          <image>
             <Image url="@../icons/icons8_lock_52px.png" />
          </image></ImageView>
-      <Button fx:id="btnSignIn" alignment="CENTER" defaultButton="true" layoutX="241.0" layoutY="278.0" mnemonicParsing="false" onAction="#signInButtonPushed" prefHeight="37.0" prefWidth="118.0" text="SignIn" textFill="#4059a9">
+      <Button fx:id="signinbtn" alignment="CENTER" defaultButton="true" layoutX="241.0" layoutY="278.0" mnemonicParsing="false" onAction="#signInButtonPushed" prefHeight="37.0" prefWidth="118.0" text="SignIn" textFill="#4059a9">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Button>
       <JFXButton fx:id="forgetpassbtn" layoutX="236.0" layoutY="338.0" onAction="#forgetPasswordButtonPushed" prefHeight="30.0" prefWidth="128.0" text="Forget password" textFill="#4059a9" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="backbtn" layoutX="456.0" layoutY="79.0" onAction="#backButtonPushed" text="Back &gt;" textFill="#4059a9" />
+      <JFXButton fx:id="signupbtn" layoutX="51.0" layoutY="323.0" onAction="#signUpButtonPushed" prefHeight="27.0" prefWidth="84.0" text="Signup" textFill="#4059a9" underline="true">
          <font>
             <Font size="14.0" />
          </font>

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
    <top>
       <AnchorPane prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #daede9;" BorderPane.alignment="CENTER">
          <children>
@@ -28,7 +28,7 @@
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="358.0" prefWidth="680.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="imgProfile" fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -38,12 +38,13 @@
             <JFXTextField fx:id="tfName" layoutX="233.0" layoutY="173.0" />
             <JFXTextField fx:id="tfEmail" layoutX="233.0" layoutY="223.0" />
             <JFXTextField fx:id="tfPassword" layoutX="233.0" layoutY="269.0" />
-            <Button fx:id="savebtn" defaultButton="true" layoutX="495.0" layoutY="267.0" mnemonicParsing="false" onAction="#saveButtonPushed" prefHeight="26.0" prefWidth="79.0" text="Save" textFill="#4059a9">
+            <Button fx:id="savebtn" defaultButton="true" layoutX="493.0" layoutY="379.0" mnemonicParsing="false" onAction="#saveButtonPushed" prefHeight="26.0" prefWidth="79.0" text="Save" textFill="#4059a9">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
             <JFXButton fx:id="btnBackHome" layoutX="24.0" layoutY="25.0" onAction="#backButtonPushed" text="&lt; Back Home" textFill="#4059a9" />
+            <JFXTextField fx:id="tfScore" layoutX="233.0" layoutY="327.0" />
          </children>
       </AnchorPane>
    </center>

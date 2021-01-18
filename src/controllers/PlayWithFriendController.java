@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import dbconnection.Player;
 import java.io.IOException;
 import tictactoe.*;
 import java.net.URL;
@@ -85,11 +86,29 @@ public class PlayWithFriendController implements Initializable {
     /**
      * Initializes the controller class.
      */
+   private Player p;
+    
+    public void init(Player player)
+    {
+        p = player;
+        player1Name.setText(player.getName());
+        player1MainScore.setText(Integer.toString(player.getMain_score()));
+        player1Score.setText("0");
+         player2Score.setText("0");
+    }
+    
     @FXML
     private void leaveMatchButtonPushed(ActionEvent event) throws IOException
     {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
+            Parent root = loader.load();
+
             Scene scene = new Scene(root);
+
+            //access the controller and call a method
+            PlayingModeController controller = loader.getController();
+            controller.init(p);
 
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 

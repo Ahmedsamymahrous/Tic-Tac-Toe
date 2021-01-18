@@ -35,8 +35,8 @@ public class TicTacToe extends Application {
      */
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         launch(args);
-        //DBMS db = new DBMS();
-        //List<Player> players = db.SelectPlayer();
+        DBMS db = new DBMS();
+        List<Player> players = db.SelectPlayer();
     }
     
 }

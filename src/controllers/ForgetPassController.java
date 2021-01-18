@@ -46,27 +46,50 @@ public class ForgetPassController implements Initializable {
     private TextField tfEmail;
     @FXML
     private Button resetbtn;
-
+    private Player p;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }   
+   
+    @FXML
+    private void signInButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
+    {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
+                    Scene scene = new Scene(root);
 
+                    Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+                    window.setScene(scene);
+                    window.show();
+    }
+    @FXML
+     private void signUpButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
+    {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/SignUp.fxml"));
+                    Scene scene = new Scene(root);
+
+                    Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+                    window.setScene(scene);
+                    window.show();
+    }
     @FXML
     private void resetButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
     {
          if(validateEmailPattern(tfEmail.getText()))
         {
-                   Player p = new Player(tfEmail.getText());
+                   p = new Player(tfEmail.getText());
                   LoginDB db = new LoginDB();
                   db.Connect();
                   System.out.println("isEz"+db.isExist(p,false));
                   if(db.isExist(p,false))
                   {
-                             sendEmail(event,p.getEmail());
+                            p  = db.getPlayerData();
+                             sendEmail(event);
                   }
                   else
                   {
@@ -101,17 +124,16 @@ public class ForgetPassController implements Initializable {
         alert.setContentText(msg);
         alert.showAndWait();
     }
-    private void sendEmail(ActionEvent event,String playerEmail) throws IOException
+    private void sendEmail(ActionEvent event) throws IOException
     {
-        String userName = new String("tictactoegame660"); //change to sender username 
-            String password = new String("intake41");  //change to sender pass
+        String userName = new String("tictactoegame660");  
+            String password = new String("intake41");  
             String sendingHost = "smtp.gmail.com";     
             int sendingPort = 465;
-            String from = new String("tictactoegame660@gmail.com");       //change to sender email
-            String to = new String(playerEmail);           //change to receiver email
+            String from = new String("tictactoegame660@gmail.com");       
+            String to = new String(p.getEmail());          
             String subject = new String("Reset password");
-            String text = new String("12345 this is a temp password");
-            String receivingHost;
+            String text = new String("Your password is : "+p.getPassword());
             
         Properties props = new Properties();
  

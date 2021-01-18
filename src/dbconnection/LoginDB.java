@@ -24,6 +24,7 @@ public class LoginDB {
 
     ResultSet rs;
     PreparedStatement ps;
+    Player player;
      //connecting to DB 
     public Connection Connect() throws ClassNotFoundException, InstantiationException, IllegalAccessException
     {
@@ -42,12 +43,12 @@ public class LoginDB {
             conn = this.Connect();
              PreparedStatement pins;
             if(loginOrforget){
-                    pins = conn.prepareStatement("Select playerID From player where email=? and password=?");
+                    pins = conn.prepareStatement("Select * From player where email=? and password=?");
                    pins.setString(1,p.getEmail());
                    pins.setString(2,p.getPassword());
             }
             else{
-                pins = conn.prepareStatement("Select playerID From player where email=?");
+                pins = conn.prepareStatement("Select * From player where email=?");
                  pins.setString(1,p.getEmail());
             }
        
@@ -55,6 +56,9 @@ public class LoginDB {
             // loop through the result set
             if(rs.next())
             {    
+                player = new Player(rs.getInt("playerID"),rs.getString("name")
+                            , rs.getString("email"),rs.getString("password")
+                            ,rs.getInt("main_score"),rs.getString("status"),rs.getString("avatar"));
                 return true;
             }
             
@@ -64,6 +68,10 @@ public class LoginDB {
         }
         return false;
     }
+     public Player getPlayerData()
+     {           
+           return player;
+     }
     public void closeConnection()
     {
         try {

@@ -81,16 +81,32 @@ public class SignUpController implements Initializable {
                     //insert successfull
                     System.out.println("inside isExist");
                     boolean bol = db.newPlayer(p);
+                    //p = db.getPlayerData();
+                    
                     System.out.println("after new player " + bol);
                      Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Success");
                     alert.setContentText("Account created successfully");
                     alert.showAndWait();
                     
-                    Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
+                   /* Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
                     Scene scene = new Scene(root);
 
                     //This line gets the Stage information
+                    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+                    window.setScene(scene);
+                    window.show();*/
+                   FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
+                    Parent root = loader.load();
+
+                    Scene scene = new Scene(root);
+
+                    //access the controller and call a method
+                    PlayingModeController controller = loader.getController();
+                    controller.init(p);
+
                     Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
                     window.setScene(scene);
