@@ -5,7 +5,11 @@
  */
 package dbconnection;
 
+
+
 import javafx.scene.control.Alert;
+
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,11 +88,20 @@ public class DBMS {
                /* if(rs.getInt("status") == 1)
                 {
                     p.setStat(new ImageView(new Image(this.getClass().getResourceAsStream("./icons/on.png"))));
+=======
+                if(rs.getInt("status") == 1)
+                {//..\icons\icon9.png
+                    p.setStat(new ImageView(new Image(getClass().getResourceAsStream("/icons/on.png"))));
+>>>>>>> 9e8d5a5b6842b2f3f3fdc099441f739461975f39
                 }else
                 {
-                    p.setStat(new ImageView(new Image(this.getClass().getResourceAsStream("./icons/off.png"))));
+                    p.setStat(new ImageView(new Image(getClass().getResourceAsStream("/icons/off.png"))));
                 }
+<<<<<<< HEAD
                 p.setAvat(new ImageView(new Image(this.getClass().getResourceAsStream("./icons/"+rs.getString("avatar")))));
+                Data.add(p);
+=======
+                    p.setAvat(new ImageView(new Image(getClass().getResourceAsStream("/icons/"+rs.getString("avatar")))));
                 Data.add(p);*/
                 System.out.println(
                 rs.getString("name") + "\t" +
