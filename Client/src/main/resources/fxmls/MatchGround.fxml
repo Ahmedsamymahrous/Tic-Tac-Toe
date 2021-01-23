@@ -94,7 +94,7 @@
                      <graphic>
                         <ImageView fx:id="icon" fitHeight="84.0" fitWidth="63.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/icons/icon15.png" />
+                              <Image url="@../icons/15.png" />
                            </image>
                         </ImageView>
                      </graphic>

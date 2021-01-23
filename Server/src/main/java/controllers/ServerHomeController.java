@@ -6,6 +6,7 @@
 package controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dbconnection.*;
 import java.io.*;
@@ -13,6 +14,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,6 +75,8 @@ public class ServerHomeController implements Initializable {
     private DataInputStream dis;
     private PrintStream ps;
     private Player p;
+     private ObjectMapper mapper;
+    //private Map<String, Player> elements;
     
     /**
      * Initializes the controller class.
@@ -109,7 +114,7 @@ public class ServerHomeController implements Initializable {
     
     public void StartServer(ActionEvent event)
     {
-         ObjectMapper mapper = new ObjectMapper();
+        mapper = new ObjectMapper();
         ServerOn = true;
         start.setDisable(ServerOn);
         if(main == null)
@@ -130,22 +135,27 @@ public class ServerHomeController implements Initializable {
                     {
                         Platform.runLater(() -> taLog.appendText(new Date() + ": Wait for players to join session " + sessionNo + '\n'));
                         
-                                /** Here we accept the connection of one player and convert the string received to object **/
                                Socket s = serverSocket.accept();
                                 dis = new DataInputStream(s.getInputStream());
                                 ps = new PrintStream(s.getOutputStream());
                                 String msg = dis.readLine();
-                            System.out.println(msg);
+                                 System.out.println(msg);
                            
-                            /** Convert from string to Player object  **/ 
-                             p = mapper.readValue(msg, Player.class);
-                           //System.out.println(p.getEmail() + " " + p.getName()+" "+p.getPassword());
+                            /** Convert from json string to map  **/ 
+                             Map<String, Player> recMsg = mapper.readValue(msg,new TypeReference<Map<String, Player>>() {});
+                             System.out.println(recMsg.values().toArray()[0]);
+                              p = (Player) recMsg.values().toArray()[0];
                            
                         Platform.runLater(() ->
                         {
                             taLog.appendText(new Date() + "Socket Number  "+ s +" joind and session number : "+ sessionNo + '\n');
                             taLog.appendText("Player 1's IP address" + s.getInetAddress().getHostAddress() + '\n');
                         });
+                        /**check from which scene the request came from**/
+                        if(recMsg.keySet().toArray()[0].equals("login"))
+                        {
+                                        signInAction();
+                         }
                      
                     }
                     serverSocket.close();
@@ -153,7 +163,13 @@ public class ServerHomeController implements Initializable {
                 catch(IOException ex) 
                 {
                     ex.printStackTrace();
-                }
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ServerHomeController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(ServerHomeController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(ServerHomeController.class.getName()).log(Level.SEVERE, null, ex);
+                } 
             }            
         });
         
@@ -169,7 +185,7 @@ public class ServerHomeController implements Initializable {
         main.stop();
         
     }
-    /**  The following methods must be called with flag that represents the scene **/
+    
       public void signUpAction() throws ClassNotFoundException
     {
         try {
@@ -198,26 +214,24 @@ public class ServerHomeController implements Initializable {
             Logger.getLogger(ServerHomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void signInAction() throws ClassNotFoundException, InstantiationException, IllegalAccessException 
+     public void signInAction() throws ClassNotFoundException, InstantiationException, IllegalAccessException, JsonProcessingException, IOException 
     {
-            ObjectMapper mapper = new ObjectMapper();
+            //ObjectMapper mapper = new ObjectMapper();
             LoginDB db = new LoginDB();
+            Map<String, Player> replyMsg = new HashMap();
             db.Connect();
-            //check if the player exists
             if(db.isExist(p,true))
             {
                      p = db.getPlayerData();
-                     try {
-                                    //Convert from Player obj to string
-                                    String json = mapper.writeValueAsString(p);
-                                    ps.println(json);
-                        } catch (JsonProcessingException e) {
-                            e.printStackTrace();
-                        }
-                   System.out.println("Found");
+                    replyMsg.put("true", p);
+                    System.out.println("Found");
              } else {
-                // player doesn't exist
-                ps.println("false");
+                // player doesn't exist !
+                replyMsg.put("false", p);
             }
+                String json = mapper.writeValueAsString(replyMsg);
+                //System.out.println(json);
+                //System.out.println("inside sign in");
+                ps.println(json);
     }
 }

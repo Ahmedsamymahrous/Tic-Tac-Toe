@@ -49,7 +49,7 @@ public class DBMS {
             while (rs.next()) {
                 Player p = new Player(rs.getInt("playerID"),rs.getString("name")
                 , rs.getString("email"),rs.getString("password")
-                ,rs.getInt("main_score"),rs.getString("status"),rs.getString("avatar"));
+                ,rs.getInt("main_score"),rs.getInt("status"),rs.getString("avatar"));
                 Data.add(p);
                 System.out.println(rs.getInt("playerID") + "\t" +
                 rs.getString("name") + "\t" +

@@ -21,12 +21,12 @@
          <children>
             <ImageView fx:id="player1Icone" fitHeight="70.0" fitWidth="81.0" layoutX="177.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../java/icons/icon12.png" />
+                  <Image url="@../icons/12.png" />
                </image>
             </ImageView>
             <ImageView fx:id="player2Icon" fitHeight="70.0" fitWidth="81.0" layoutX="342.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../java/icons/icon3.png" />
+                  <Image url="@../icons/3.png" />
                </image>
             </ImageView>
             <Label fx:id="player1Name" layoutX="14.0" layoutY="14.0" text="Ahmed">

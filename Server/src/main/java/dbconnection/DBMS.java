@@ -51,7 +51,7 @@ public class DBMS {
             while (rs.next()) {
                 Player p = new Player(rs.getInt("playerID"),rs.getString("name")
                 , rs.getString("email"),rs.getString("password")
-                ,rs.getInt("main_score"),rs.getString("status"),rs.getString("avatar"));
+                ,rs.getInt("main_score"),rs.getInt("status"),rs.getString("avatar"));
                 Data.add(p);
                 System.out.println(rs.getInt("playerID") + "\t" +
                 rs.getString("name") + "\t" +
@@ -80,16 +80,16 @@ public class DBMS {
             // loop through the result set
             while (rs.next()) {
                 Player p = new Player(rs.getString("name"), rs.getString("email"),
-                        rs.getInt("main_score"),rs.getString("status"));
-                if(rs.getInt("status") == 1)
-                {//..\icons\icon9.png
+                        rs.getInt("main_score"),rs.getInt("status"));
+               /* if(rs.getInt("status") == 1)
+                {
                     p.setStat(new ImageView(new Image(this.getClass().getResourceAsStream("./icons/on.png"))));
                 }else
                 {
                     p.setStat(new ImageView(new Image(this.getClass().getResourceAsStream("./icons/off.png"))));
                 }
                 p.setAvat(new ImageView(new Image(this.getClass().getResourceAsStream("./icons/"+rs.getString("avatar")))));
-                Data.add(p);
+                Data.add(p);*/
                 System.out.println(
                 rs.getString("name") + "\t" +
                 rs.getString("email") + "\t" +

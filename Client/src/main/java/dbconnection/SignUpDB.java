@@ -65,7 +65,7 @@ public class SignUpDB {
             {
                 player = new Player(rs.getInt("playerID"),rs.getString("name")
                             , rs.getString("email"),rs.getString("password")
-                            ,rs.getInt("main_score"),rs.getString("status"),rs.getString("avatar"));
+                            ,rs.getInt("main_score"),rs.getInt("status"),rs.getString("avatar"));
                 return true;
             }
             

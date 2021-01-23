@@ -32,7 +32,7 @@
          <children>
             <ImageView fx:id="imgProfile" fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../java/icons/icons8_gender_neutral_user_128px.png" />
+                  <Image url="@../icons/icons8_gender_neutral_user_128px.png" />
                </image>
             </ImageView>
             <JFXTextField fx:id="tfName" layoutX="233.0" layoutY="173.0" />

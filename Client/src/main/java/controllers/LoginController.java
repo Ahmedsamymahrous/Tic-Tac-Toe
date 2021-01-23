@@ -5,12 +5,26 @@
  */
 package controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jfoenix.controls.JFXButton;
-import dbconnection.LoginDB;
+import controllers.PlayingModeController;
 import dbconnection.Player;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
@@ -50,6 +64,10 @@ public class LoginController implements Initializable {
     private JFXButton backbtn;
     @FXML
     private JFXButton signupbtn;
+    private Socket s;
+    private DataInputStream dis;
+    private PrintStream ps;
+    private ObjectMapper mapper;
     private Player p;
     /**
      * Initializes the controller class.
@@ -57,8 +75,16 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        //new LoginController();
     }    
-
+   
+    public void connectPlayer() throws IOException
+    {
+          s = new Socket("127.0.0.1", 5005);
+          dis = new DataInputStream(s.getInputStream());
+           ps = new PrintStream(s.getOutputStream());
+           System.out.println("Sign in connected");
+    }
     @FXML
     private void signInButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
     {
@@ -67,21 +93,38 @@ public class LoginController implements Initializable {
         {
               if(!tfPassword.getText().trim().isEmpty())
               {
-                  p = new Player(tfEmail.getText(),tfPassword.getText());
-                  LoginDB db = new LoginDB();
-                  db.Connect();
-                  
-                  if(db.isExist(p,true))
-                  {
-                        p = db.getPlayerData();
-                         moveToPlayingModeOptions(event);
-                  }
-                  else
-                  {
-                      alertError("Invalid","Wrong email or password");
-                       clearNodes();
-                  }
-              }
+                             p = new Player(tfEmail.getText(), tfPassword.getText());
+                                 connectPlayer();
+ 
+                            Map<String, Player> sentMsg = new HashMap();
+                            sentMsg.put("login", p);
+                            
+                            ObjectMapper objectMapper = new ObjectMapper();
+
+                            try {
+                                String json = objectMapper.writeValueAsString(sentMsg);
+                                System.out.println(json);
+                                ps.println(json);
+                            } catch (JsonProcessingException e) {
+                                e.printStackTrace();
+                            }
+                            
+                         String replyMsg = dis.readLine();
+                          Map<String, Player> recMsg = objectMapper.readValue(replyMsg,new TypeReference<Map<String, Player>>() {});
+                        System.out.println(recMsg.values().toArray()[0]);
+
+                        if(recMsg.keySet().toArray()[0].equals("true"))
+                        {
+                            System.out.println("it works!");
+                             p = (Player) recMsg.values().toArray()[0];
+                                moveToPlayingModeOptions(event);
+                          }
+                        else
+                        {
+                            alertError("Invalid","Wrong email or password");
+                            clearNodes();
+                        }
+                 }
               else
               {
                   alertError("Invalid password","Password field can't be empty!");
@@ -93,6 +136,7 @@ public class LoginController implements Initializable {
                 alertError("Invalid email","Invalid email pattern");
                  clearNodes();
         }
+        closeConnection();
     }
    
     @FXML
@@ -123,12 +167,12 @@ public class LoginController implements Initializable {
     private void signUpButtonPushed(ActionEvent event) throws IOException
     {
             Parent root = FXMLLoader.load(getClass().getResource("/fxmls/SignUp.fxml"));
-                    Scene scene = new Scene(root);
+            Scene scene = new Scene(root);
 
-                    Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+            Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
 
-                    window.setScene(scene);
-                    window.show();
+            window.setScene(scene);
+            window.show();
     }
     
      private void moveToPlayingModeOptions(ActionEvent event) throws IOException
@@ -172,5 +216,13 @@ public class LoginController implements Initializable {
            alert.setContentText(msg);
            alert.showAndWait();
        }
-
+        public void closeConnection() {
+        try {
+            dis.close();
+            ps.close();
+            s.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
