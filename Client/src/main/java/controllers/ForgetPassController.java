@@ -27,6 +27,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+//import com.sun.mail.*;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -34,6 +36,12 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+/*import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;*/
 
 /**
  * FXML Controller class
@@ -100,8 +108,7 @@ public class ForgetPassController implements Initializable {
         window.show();
     }
     @FXML
-    private void resetButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
-    {
+    private void resetButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException, MessagingException {
          if(validateEmailPattern(tfEmail.getText()))
         {
             p = new Player(tfEmail.getText());
@@ -149,8 +156,7 @@ public class ForgetPassController implements Initializable {
         alert.setContentText(msg);
         alert.showAndWait();
     }
-    private void sendEmail(ActionEvent event) throws IOException
-    {
+    private void sendEmail(ActionEvent event) throws IOException, MessagingException {
             String userName = new String("tictactoegame660");
             String password = new String("intake41");
             String sendingHost = "smtp.gmail.com";
