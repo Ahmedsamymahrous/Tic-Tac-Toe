@@ -6,10 +6,11 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
-import dbconnection.SignUpDB;
+import dbconnection.PlayerConnection;
 import dbconnection.Player;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,11 +53,17 @@ public class SignUpController implements Initializable {
     private Button btnSignUp;
     @FXML
     private JFXButton btnSignIn;
-    
-    
-    
+
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
     Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    private PlayerConnection connectPlayer;
+    private Player player;
+
+    public void connectPlayer(PlayerConnection connectPlayer) throws IOException
+    {
+        this.connectPlayer = connectPlayer;
+    }
 
     private static boolean validate(String emailStr) {
             Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
@@ -73,44 +80,20 @@ public class SignUpController implements Initializable {
         }else{ 
             if(tfRepassword.getText().equals(tfPassword.getText()))
             {
-                Player p = new Player(tfName.getText(),tfEmail.getText(),tfPassword.getText());
-                SignUpDB db = new SignUpDB();
-                db.Connect();
-                System.out.println("isEz"+db.isExist(p));
-                if(!db.isExist(p)){
-                    //insert successfull
-                    System.out.println("inside isExist");
-                    boolean bol = db.newPlayer(p);
-                    //p = db.getPlayerData();
-                    
-                    System.out.println("after new player " + bol);
-                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                player = new Player(tfName.getText(), tfEmail.getText(), tfPassword.getText());
+                connectPlayer.serialaize("signup",player);
+
+                Map<String, Player> elements = connectPlayer.deserialize();
+                System.out.println("bol here :"+elements.keySet().toArray()[0].equals("true"));
+
+                if(elements.keySet().toArray()[0].equals("true")){
+                    System.out.println("after new player ");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Success");
                     alert.setContentText("Account created successfully");
                     alert.showAndWait();
-                    
-                   /* Parent root = FXMLLoader.load(getClass().getResource("/fxmls/PlayingMode.fxml"));
-                    Scene scene = new Scene(root);
 
-                    //This line gets the Stage information
-                    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-                    window.setScene(scene);
-                    window.show();*/
-                   FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
-                    Parent root = loader.load();
-
-                    Scene scene = new Scene(root);
-
-                    //access the controller and call a method
-                    PlayingModeController controller = loader.getController();
-                    controller.init(p);
-
-                    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-                    window.setScene(scene);
-                    window.show();
+                    moveToPlayingModeOptions(event);
                 }else
                 {
                     // player is already exist
@@ -127,15 +110,39 @@ public class SignUpController implements Initializable {
             }
         }
     }
-    
+
+    private void moveToPlayingModeOptions(ActionEvent event) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        //access the controller and call a method
+        PlayingModeController controller = loader.getController();
+        controller.init(player,connectPlayer);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(scene);
+        window.show();
+    }
     @FXML
     private void signInAction(ActionEvent event) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/Login.fxml"));
+        Parent root = loader.load();
+
         Scene scene = new Scene(root);
-        
+
+        //access the controller and call a method
+        LoginController controller = loader.getController();
+        controller.connectPlayer(connectPlayer);
+
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+
         window.setScene(scene);
         window.show();
     }

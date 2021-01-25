@@ -8,6 +8,8 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import dbconnection.PlayerConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,27 +29,48 @@ public class HomeController  implements Initializable {
     private Button loginButton;
      @FXML
      private Button singupButton;
+    private PlayerConnection connectPlayer;
+
+    private void startConnection() throws IOException
+    {
+        this.connectPlayer = new PlayerConnection();
+        this.connectPlayer.startConnection();
+    }
     @FXML
     private void loginButtonPushed(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
+        startConnection();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/Login.fxml"));
+        Parent root = loader.load();
+
         Scene scene = new Scene(root);
-        
-        //This line gets the Stage information
+
+        //access the controller and call a method
+        LoginController controller = loader.getController();
+        controller.connectPlayer(connectPlayer);
+
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+
         window.setScene(scene);
         window.show();
     }
     @FXML
      private void signupButtonPushed(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/SignUp.fxml"));
+        startConnection();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/SignUp.fxml"));
+        Parent root = loader.load();
+
         Scene scene = new Scene(root);
-        
-        //This line gets the Stage information
+
+        //access the controller and call a method
+        SignUpController controller = loader.getController();
+        controller.connectPlayer(connectPlayer);
+
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+
         window.setScene(scene);
         window.show();
     }

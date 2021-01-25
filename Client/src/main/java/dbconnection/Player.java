@@ -19,9 +19,7 @@ public class Player {
     private int main_score;
     private int status;
     private String avatar;
-    /*private ImageView stat;
-    private ImageView avat;*/
-    
+
     public Player() {
         System.out.println("Hi from default constructor.");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -40,6 +38,7 @@ public class Player {
         this.name = name;
         this.main_score = main_score;
         this.status = status;
+
     }
     public Player(String name, String email,int main_score,int status)
     {
@@ -116,26 +115,7 @@ public class Player {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
-   /* public void setAvat(ImageView avat) {
-        this.avat = avat;
-        this.avat.setFitHeight(40);
-        this.avat.setFitWidth(40);
-        
-    }
 
-    public ImageView getAvat() {
-        return avat;
-    }
-
-    public ImageView getStat() {
-        return stat;
-    }
-    public void setStat(ImageView stat) {
-        this.stat = stat;
-        this.stat.setFitHeight(40);
-        this.stat.setFitWidth(40);
-    }*/
-    
      @Override
     public String toString() {
         return "Player [playerID=" + playerID + ", name=" + name

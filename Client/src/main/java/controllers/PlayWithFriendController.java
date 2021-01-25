@@ -9,6 +9,8 @@ import dbconnection.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import dbconnection.PlayerConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,37 +84,36 @@ public class PlayWithFriendController implements Initializable {
     @FXML
     private Button sendBtn;
     private boolean chatOn = false;
-    /**
-     * Initializes the controller class.
-     */
-   private Player p;
-    
-    public void init(Player player)
+    private PlayerConnection connectPlayer;
+    private Player player;
+
+    public void init(Player player,PlayerConnection connectPlayer)
     {
-        p = player;
+        this.connectPlayer = connectPlayer;
+        this.player = player;
         player1Name.setText(player.getName());
         player1MainScore.setText(Integer.toString(player.getMain_score()));
         player1Score.setText("0");
-         player2Score.setText("0");
+        player2Score.setText("0");
     }
     
     @FXML
     private void leaveMatchButtonPushed(ActionEvent event) throws IOException
     {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
-            Parent root = loader.load();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
+        Parent root = loader.load();
 
-            Scene scene = new Scene(root);
+        Scene scene = new Scene(root);
 
-            //access the controller and call a method
-            PlayingModeController controller = loader.getController();
-            controller.init(p);
+        //access the controller and call a method
+        PlayingModeController controller = loader.getController();
+        controller.init(player,connectPlayer);
 
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-            window.setScene(scene);
-            window.show();
+        window.setScene(scene);
+        window.show();
     }
     @FXML
     private void Chat(ActionEvent event) {
@@ -125,6 +126,9 @@ public class PlayWithFriendController implements Initializable {
         }
         chatRoom.setVisible(chatOn);
     }
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

@@ -9,6 +9,8 @@ import dbconnection.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import dbconnection.PlayerConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,30 +49,32 @@ public class MatchGroundController implements Initializable {
     private Button chatBtn;
     @FXML
     private ListView<?> listView;
-    private Player p;
+    private PlayerConnection connectPlayer;
+    private Player player;
     
-    public void init(Player player)
+    public void init(Player player,PlayerConnection connectPlayer)
     {
-        p = player;
-        name.setText(player.getName());
+        this.connectPlayer = connectPlayer;
+        this.player = player;
+        name.setText(this.player.getName());
     }
     
-@FXML
+    @FXML
     public void playMatch(ActionEvent event) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxmls/PlayWithFriend.fxml"));
-            Parent root = loader.load();
+        loader.setLocation(getClass().getResource("/fxmls/PlayWithFriend.fxml"));
+        Parent root = loader.load();
 
-            Scene scene = new Scene(root);
+        Scene scene = new Scene(root);
 
-            //access the controller and call a method
-            PlayWithFriendController controller = loader.getController();
-            controller.init(p);
+        //access the controller and call a method
+        PlayWithFriendController controller = loader.getController();
+        controller.init(player,connectPlayer);
 
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-            window.setScene(scene);
+        window.setScene(scene);
             window.show();
     }
     @FXML
@@ -84,7 +88,7 @@ public class MatchGroundController implements Initializable {
         
         //access the controller and call a method
         ProfileController controller = loader.getController();
-       controller.getData(p,true);
+       controller.getData(player,true,connectPlayer);
         
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -97,30 +101,32 @@ public class MatchGroundController implements Initializable {
     {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
         Scene scene = new Scene(root);
-        
+
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+
         window.setScene(scene);
+        connectPlayer.closeConnection();
+        System.out.println("closed");
         window.show();
     }
     @FXML
     public void backButtonPushed(ActionEvent event) throws IOException
     {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
-            Parent root = loader.load();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
+        Parent root = loader.load();
 
-            Scene scene = new Scene(root);
+        Scene scene = new Scene(root);
 
-            //access the controller and call a method
-            PlayingModeController controller = loader.getController();
-            controller.init(p);
+        //access the controller and call a method
+        PlayingModeController controller = loader.getController();
+        controller.init(player,connectPlayer);
 
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-            window.setScene(scene);
-            window.show();
+        window.setScene(scene);
+        window.show();
     }
     /**
      * Initializes the controller class.

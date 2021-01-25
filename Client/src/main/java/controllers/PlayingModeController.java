@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import dbconnection.PlayerConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,20 +40,15 @@ public class PlayingModeController implements Initializable {
     private Button logoutbtn;
     @FXML
     private Button profilebtn;
+    private PlayerConnection connectPlayer;
      private Player p;
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-      //profilebtn.setStyle("-fx-text-fill: white");
-    }    
-   
-    public void init(Player player)
+
+
+    public void init(Player player,PlayerConnection connectPlayer)
     {
-        p = player;
-          profilebtn.setText(p.getName());
+        this.connectPlayer = connectPlayer;
+        this.p = player;
+        profilebtn.setText(p.getName());
     }
     @FXML
     private void multiModeButtonPushed(ActionEvent event) throws IOException
@@ -64,7 +61,7 @@ public class PlayingModeController implements Initializable {
         
         //access the controller and call a method
         MatchGroundController controller = loader.getController();
-       controller.init(p);
+       controller.init(p,connectPlayer);
         
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -76,7 +73,7 @@ public class PlayingModeController implements Initializable {
     @FXML
     private void singleModeButtonPushed(ActionEvent event) throws IOException
     {
-            FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxmls/SingleModePlay.fxml"));
         Parent root = loader.load();
         
@@ -84,7 +81,7 @@ public class PlayingModeController implements Initializable {
         
         //access the controller and call a method
         SingleModePlayController controller = loader.getController();
-       controller.init(p);
+       controller.init(p,connectPlayer);
         
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -96,13 +93,15 @@ public class PlayingModeController implements Initializable {
     @FXML
     private void logoutButtonPushed(ActionEvent event) throws IOException
     {
-         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
         Scene scene = new Scene(root);
-        
+
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+
         window.setScene(scene);
+        connectPlayer.closeConnection();
+        System.out.println("closed");
         window.show();
     }
 
@@ -117,13 +116,21 @@ public class PlayingModeController implements Initializable {
         
         //access the controller and call a method
         ProfileController controller = loader.getController();
-       controller.getData(p,false);
+        controller.getData(p,false,connectPlayer);
         
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(scene);
         window.show();
+    }
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        //profilebtn.setStyle("-fx-text-fill: white");
     }
     
 }

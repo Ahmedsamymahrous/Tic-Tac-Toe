@@ -27,6 +27,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import dbconnection.PlayerConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,26 +66,14 @@ public class LoginController implements Initializable {
     private JFXButton backbtn;
     @FXML
     private JFXButton signupbtn;
-    private Socket s;
-    private DataInputStream dis;
-    private PrintStream ps;
-    private ObjectMapper mapper;
+
     private Player p;
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        //new LoginController();
-    }    
-   
-    public void connectPlayer() throws IOException
+    private PlayerConnection connectPlayer;
+
+
+    public void connectPlayer(PlayerConnection connectPlayer) throws IOException
     {
-          s = new Socket("127.0.0.1", 5005);
-          dis = new DataInputStream(s.getInputStream());
-           ps = new PrintStream(s.getOutputStream());
-           System.out.println("Sign in connected");
+        this.connectPlayer = connectPlayer;
     }
     @FXML
     private void signInButtonPushed(ActionEvent event) throws IOException, ClassNotFoundException,IllegalAccessException,InstantiationException
@@ -93,37 +83,23 @@ public class LoginController implements Initializable {
         {
               if(!tfPassword.getText().trim().isEmpty())
               {
-                             p = new Player(tfEmail.getText(), tfPassword.getText());
-                                 connectPlayer();
- 
-                            Map<String, Player> sentMsg = new HashMap();
-                            sentMsg.put("login", p);
-                            
-                            ObjectMapper objectMapper = new ObjectMapper();
+                      p = new Player(tfEmail.getText(), tfPassword.getText());
+                      connectPlayer.serialaize("login",p);
 
-                            try {
-                                String json = objectMapper.writeValueAsString(sentMsg);
-                                System.out.println(json);
-                                ps.println(json);
-                            } catch (JsonProcessingException e) {
-                                e.printStackTrace();
-                            }
-                            
-                         String replyMsg = dis.readLine();
-                          Map<String, Player> recMsg = objectMapper.readValue(replyMsg,new TypeReference<Map<String, Player>>() {});
-                        System.out.println(recMsg.values().toArray()[0]);
+                      Map<String, Player> elements = connectPlayer.deserialize();
+                      System.out.println(elements.values().toArray()[0]);
 
-                        if(recMsg.keySet().toArray()[0].equals("true"))
-                        {
-                            System.out.println("it works!");
-                             p = (Player) recMsg.values().toArray()[0];
-                                moveToPlayingModeOptions(event);
-                          }
-                        else
-                        {
-                            alertError("Invalid","Wrong email or password");
-                            clearNodes();
-                        }
+                      if(elements.keySet().toArray()[0].equals("true"))
+                      {
+                          System.out.println("it works!");
+                          p = (Player) elements.values().toArray()[0];
+                          moveToPlayingModeOptions(event);
+                      }
+                    else
+                    {
+                        alertError("Invalid","Wrong email or password");
+                        clearNodes();
+                    }
                  }
               else
               {
@@ -136,43 +112,59 @@ public class LoginController implements Initializable {
                 alertError("Invalid email","Invalid email pattern");
                  clearNodes();
         }
-        closeConnection();
     }
    
     @FXML
     private void forgetPasswordButtonPushed(ActionEvent event) throws IOException
     {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/ForgetPass.fxml"));
-            Scene scene = new Scene(root);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/ForgetPass.fxml"));
+        Parent root = loader.load();
 
-            Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
 
-            window.setScene(scene);
-            window.show();
+        //access the controller and call a method
+        ForgetPassController controller = loader.getController();
+        controller.init(connectPlayer);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML
     private void backButtonPushed(ActionEvent event) throws IOException
-        {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
-            Scene scene = new Scene(root);
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
+        Scene scene = new Scene(root);
 
-            Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-            window.setScene(scene);
-            window.show();
+        window.setScene(scene);
+        connectPlayer.closeConnection();
+        System.out.println("closed");
+        window.show();
     }
 
     @FXML
     private void signUpButtonPushed(ActionEvent event) throws IOException
     {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/SignUp.fxml"));
-            Scene scene = new Scene(root);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/SignUp.fxml"));
+        Parent root = loader.load();
 
-            Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
 
-            window.setScene(scene);
-            window.show();
+        //access the controller and call a method
+        SignUpController controller = loader.getController();
+        controller.connectPlayer(connectPlayer);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(scene);
+        window.show();
     }
     
      private void moveToPlayingModeOptions(ActionEvent event) throws IOException
@@ -180,49 +172,48 @@ public class LoginController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
         Parent root = loader.load();
-        
+
         Scene scene = new Scene(root);
-        
+
         //access the controller and call a method
         PlayingModeController controller = loader.getController();
-        controller.init(p);
-        
+        controller.init(p,connectPlayer);
+
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+
         window.setScene(scene);
         window.show();
     }
       private boolean validateEmailPattern(String email)
     {
-             String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(email);
-            
-            return matcher.matches();
-     
+        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+
+        return matcher.matches();
     }
    
-      private void clearNodes()
-        {
-            tfEmail.clear();
-            tfPassword.clear();
-        }
+   private void clearNodes()
+   {
+        tfEmail.clear();
+        tfPassword.clear();
+   }
       
-    private void alertError(String title , String msg)
-    {
+   private void alertError(String title , String msg)
+   {
           Alert alert ;
            alert = new Alert(Alert.AlertType.ERROR);
            alert.setTitle(title);
            alert.setContentText(msg);
            alert.showAndWait();
-       }
-        public void closeConnection() {
-        try {
-            dis.close();
-            ps.close();
-            s.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+   }
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        //new LoginController();
     }
+
 }
