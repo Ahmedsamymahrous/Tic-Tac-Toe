@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dbconnection.PlayerConnection;
+import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -119,11 +120,39 @@ public class ProfileController implements Initializable {
      @FXML
     private void saveButtonPushed(ActionEvent event)  throws IOException
     {
+        if(!"".equals(tfName.getText())){
+            if(!"".equals(tfPassword.getText())){
+                player = new Player(tfName.getText(), tfEmail.getText(), tfPassword.getText());
+                connectPlayer.serialaize("updateProfile",player);
+
+                Map<String, Player> elements = connectPlayer.deserialize();
+                System.out.println("bol here :"+elements.keySet().toArray()[0].equals("true"));
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setContentText("Data updated successfully");
+                alert.showAndWait();
+            }else{
+                alertError("Password Wrong","Password must not be empty!");
+            }
+        }else{
+            alertError("Username Wrong","Username must not be empty!");
+        }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setContentText("Data updated successfully");
         alert.showAndWait();
     }
+    
+    private void alertError(String title , String msg){
+        Alert alert ;
+        alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        //notSavedAlert.showAndWait();
+        alert.showAndWait();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
