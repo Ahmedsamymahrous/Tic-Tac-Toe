@@ -7,6 +7,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,11 +15,12 @@ public class PlayerConnection {
     private Socket socket;
     private DataInputStream dis;
     private PrintStream ps;
+    private int port = 55100;
     //private ObjectMapper mapper;
 
     public void startConnection() throws IOException
     {
-        socket = new Socket("127.0.0.1", 5080);
+        socket = new Socket("127.0.0.1", port);
         dis = new DataInputStream(socket.getInputStream());
         ps = new PrintStream(socket.getOutputStream());
     }
@@ -42,6 +44,24 @@ public class PlayerConnection {
         ObjectMapper objectMapper = new ObjectMapper();
         String replyMsg = dis.readLine();
         Map<String, Player> elements = objectMapper.readValue(replyMsg,new TypeReference<Map<String, Player>>() {});
+
+        return elements;
+    }
+    public Map<String, ArrayList<Player>> deserializeList()
+    {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String replyMsg = null;
+        Map<String, ArrayList<Player>> elements;
+        try {
+            replyMsg = dis.readLine();
+            System.out.println(replyMsg);
+            elements = objectMapper.readValue(replyMsg,new TypeReference<Map<String, ArrayList<Player>>>() {});
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
 
         return elements;
     }

@@ -41,7 +41,7 @@ public class PlayingModeController implements Initializable {
     @FXML
     private Button profilebtn;
     private PlayerConnection connectPlayer;
-     private Player p;
+    private Player p;
 
 
     public void init(Player player,PlayerConnection connectPlayer)
@@ -61,7 +61,7 @@ public class PlayingModeController implements Initializable {
         
         //access the controller and call a method
         MatchGroundController controller = loader.getController();
-       controller.init(p,connectPlayer);
+        controller.init(p,connectPlayer);
         
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
