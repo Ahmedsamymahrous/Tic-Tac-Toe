@@ -147,6 +147,10 @@ public class MatchGroundController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        connectPlayer.serialaize("logout",player);
+        Map<String, Player> elements = connectPlayer.deserialize();
+        System.out.println(elements.values().toArray()[0]);
+
         connectPlayer.closeConnection();
         System.out.println("closed");
         window.show();
