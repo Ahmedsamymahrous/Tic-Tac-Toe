@@ -9,6 +9,7 @@ import dbconnection.Player;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import dbconnection.PlayerConnection;
@@ -100,6 +101,10 @@ public class PlayingModeController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        connectPlayer.serialaize("logout",p);
+        Map<String, Player> elements = connectPlayer.deserialize();
+        System.out.println(elements.values().toArray()[0]);
+
         connectPlayer.closeConnection();
         System.out.println("closed");
         window.show();

@@ -67,7 +67,7 @@ public class LoginController implements Initializable {
     @FXML
     private JFXButton signupbtn;
 
-    private Player p;
+    private Player player;
     private PlayerConnection connectPlayer;
 
 
@@ -83,8 +83,8 @@ public class LoginController implements Initializable {
         {
               if(!tfPassword.getText().trim().isEmpty())
               {
-                      p = new Player(tfEmail.getText(), tfPassword.getText());
-                      connectPlayer.serialaize("login",p);
+                      player = new Player(tfEmail.getText(), tfPassword.getText());
+                      connectPlayer.serialaize("login",player);
 
                       Map<String, Player> elements = connectPlayer.deserialize();
                       System.out.println(elements.values().toArray()[0]);
@@ -92,7 +92,7 @@ public class LoginController implements Initializable {
                       if(elements.keySet().toArray()[0].equals("true"))
                       {
                           System.out.println("it works!");
-                          p = (Player) elements.values().toArray()[0];
+                          player = (Player) elements.values().toArray()[0];
                           moveToPlayingModeOptions(event);
                       }
                     else
@@ -143,6 +143,10 @@ public class LoginController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        connectPlayer.serialaize("logout",player);
+        Map<String, Player> elements = connectPlayer.deserialize();
+        System.out.println(elements.values().toArray()[0]);
+
         connectPlayer.closeConnection();
         System.out.println("closed");
         window.show();
@@ -177,7 +181,7 @@ public class LoginController implements Initializable {
 
         //access the controller and call a method
         PlayingModeController controller = loader.getController();
-        controller.init(p,connectPlayer);
+        controller.init(player,connectPlayer);
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
