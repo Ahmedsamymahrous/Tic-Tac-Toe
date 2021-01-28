@@ -84,18 +84,22 @@ public class MatchGroundController implements Initializable {
     private Player player,myFriend;
     ArrayList<Player> list;
     Thread request = null;
-    boolean inMatch = false;
     Map<String, Player> elements;
+    ObservableList<ListUsers> tableData;
 
     public void init(Player player,PlayerConnection connectPlayer)
     {
         this.connectPlayer = connectPlayer;
         this.player = player;
-        RenderData();
         if(!request.isAlive()){
+            System.out.println("new Thread is Up now !");
             request.start();
+        }else{
+            System.out.println("Thread is up already");
         }
+        RenderData();
 
+        System.out.println(tableData);
     }
     
     @FXML
@@ -104,10 +108,6 @@ public class MatchGroundController implements Initializable {
         //get selected player from list
         ListUsers selectedUser = table.getSelectionModel().getSelectedItem();
         System.out.println("play with : "+selectedUser.getName());
-
-        //sending selected user to play with.
-        connectPlayer.serialaize("play",selectedUser.mapToPlayer());
-
         //making user wait
         Platform.runLater(()->{
             textLoad.setText("Waiting other Player");
@@ -115,7 +115,12 @@ public class MatchGroundController implements Initializable {
             table.setOpacity(.3);
             matchBtn.setDisable(true);
             backBtn.setDisable(true);
+            textLoad.setVisible(true);
         });
+        //sending selected user to play with.
+        connectPlayer.serialaize("play",selectedUser.mapToPlayer());
+
+
 
     }
     @FXML
@@ -124,9 +129,9 @@ public class MatchGroundController implements Initializable {
        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxmls/Profile.fxml"));
         Parent root = loader.load();
-        
+
         Scene scene = new Scene(root);
-        
+        connectPlayer.serialaize("non",player);
         //access the controller and call a method
         ProfileController controller = loader.getController();
        controller.getData(player,true,connectPlayer);
@@ -142,14 +147,15 @@ public class MatchGroundController implements Initializable {
     {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
         Scene scene = new Scene(root);
-
+        connectPlayer.serialaize("logout",player);
+        connectPlayer.serialaize("non",player);
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
-        connectPlayer.serialaize("logout",player);
-        Map<String, Player> elements = connectPlayer.deserialize();
-        System.out.println(elements.values().toArray()[0]);
+
+        //Map<String, Player> elements = connectPlayer.deserialize();
+        //System.out.println(elements.values().toArray()[0]);
 
         connectPlayer.closeConnection();
         System.out.println("closed");
@@ -161,9 +167,8 @@ public class MatchGroundController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
-
+        connectPlayer.serialaize("non",player);
         //access the controller and call a method
         PlayingModeController controller = loader.getController();
         controller.init(player,connectPlayer);
@@ -221,29 +226,36 @@ public class MatchGroundController implements Initializable {
                 while(true){
                 try {
                     elements = connectPlayer.deserialize();
-                    Player myFriend = (Player) elements.values().toArray()[0];
                     if (elements.keySet().toArray()[0].equals("play")) {
+                        Player myFriend = (Player) elements.values().toArray()[0];
                         System.out.println(myFriend.getName() + " wanna play :::");
                         MakeAlert(myFriend);
                         //access the controller and call a method
 
                     }else if(elements.keySet().toArray()[0].equals("yes")){
+
+
+                        Player myFriend = (Player) elements.values().toArray()[0];
                         PlayWithFriendController controller = loader.getController();
                         controller.init(player, connectPlayer);
                         window.setScene(scene);
                         window.show();
-                    }else if(elements.keySet().toArray()[0].equals("no")){
-                        System.out.println("she said no and u are normal now :::::");
 
+
+                    }else if(elements.keySet().toArray()[0].equals("no")){
+                        Player myFriend = (Player) elements.values().toArray()[0];
+                        System.out.println("she said no and u are normal now :::::");
                         load.setVisible(false);
                         table.setOpacity(.7);
                         matchBtn.setDisable(false);
                         textLoad.setVisible(false);
                         backBtn.setDisable(false);
                     }else if(elements.keySet().toArray()[0].equals("offline")){
+                        Player myFriend = (Player) elements.values().toArray()[0];
                         System.out.println("offline person :::::");
                         Platform.runLater(()->{
                             textLoad.setText("Offline Player");
+                            textLoad.setVisible(true);
                             load.setVisible(false);
                         });
                         Thread.sleep(2000);
@@ -251,9 +263,21 @@ public class MatchGroundController implements Initializable {
                         matchBtn.setDisable(false);
                         textLoad.setVisible(false);
                         backBtn.setDisable(false);
+                    }else if(elements.keySet().toArray()[0].equals("list")){
+                        System.out.println("should print list");
+                        //getting all Users from Server
+                        Map<String, ArrayList<Player>> data = connectPlayer.deserializeList();
+                        list = (ArrayList<Player>) data.values().toArray()[0];
+                        //here you will send the function List of players
+                        tableData = ViewTable(list);
+                        table.setItems(tableData);
+                    }else if(elements.keySet().toArray()[0].equals("non"))
+                    {
+                        break;
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                    System.out.println(elements);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -268,11 +292,7 @@ public class MatchGroundController implements Initializable {
         name.setText(player.getName());
         //requesting all users from server
         connectPlayer.serialaize("list",player);
-        //getting all Users from Server
-        Map<String, ArrayList<Player>> elements =  connectPlayer.deserializeList();
-        list = (ArrayList<Player>) elements.values().toArray()[0];
-        //here you will send the function List of players
-        table.setItems(ViewTable(list));
+
 
     }
     public void MakeAlert(Player friend)
@@ -290,13 +310,11 @@ public class MatchGroundController implements Initializable {
             accept.setOnAction(event -> {
                 System.out.println("I accept");
                 connectPlayer.serialaize("yes",friend);
-                inMatch = true;
                 window.close();
             });
             cancel.setOnAction(event -> {
                 System.out.println("I cancel");
                 connectPlayer.serialaize("no",friend);
-                inMatch = false;
                 window.close();
             });
             VBox layout = new VBox(10);
