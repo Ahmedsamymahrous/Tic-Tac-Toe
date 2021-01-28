@@ -23,7 +23,6 @@ public class ListUsers {
     private ImageView avat;
 
     public ListUsers() {
-        System.out.println("Hi from default constructor.");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public ListUsers(int playerID, String name, String email, String password, int main_score, int status, String avatar) {
@@ -143,6 +142,7 @@ public class ListUsers {
         p.setPlayerID(this.playerID);
         p.setAvatar(this.avatar);
         p.setStatus(this.status);
+        p.setPassword(this.password);
         return p;
     }
 }

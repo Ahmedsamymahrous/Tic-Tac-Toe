@@ -15,7 +15,7 @@ public class PlayerConnection {
     private Socket socket;
     private DataInputStream dis;
     private PrintStream ps;
-    private int port = 55100;
+    private int port = 55111;
     //private ObjectMapper mapper;
 
     public void startConnection() throws IOException

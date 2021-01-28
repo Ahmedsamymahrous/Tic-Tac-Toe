@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64b9f6e4-25aa-4448-a2d3-114a25096dc2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MatchGroundController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MatchGroundController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/PlayingModeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/PlayingModeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dbconnection/ListUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dbconnection/ListUsers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dbconnection/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dbconnection/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dbconnection/PlayerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dbconnection/PlayerConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/MatchGround.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/MatchGround.fxml" afterDir="false" />
     </list>
@@ -156,9 +152,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="MainApp" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="MainApp" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.tictactoe.tictactoeclient.MainApp" />
-      <module name="TicTacToeClient" />
+      <module name="Client" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.tictactoe.tictactoeclient.*" />
@@ -168,6 +164,50 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" activateToolWindowBeforeRun="false" singleton="false">
+      <module name="Client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <useClassPathOnly />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven" singleton="false">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -187,6 +227,12 @@
       <workItem from="1611691940350" duration="593000" />
       <workItem from="1611692685652" duration="1105000" />
       <workItem from="1611696047802" duration="395000" />
+      <workItem from="1611697438415" duration="179000" />
+      <workItem from="1611701914807" duration="11650000" />
+      <workItem from="1611732288723" duration="7678000" />
+      <workItem from="1611755501563" duration="3823000" />
+      <workItem from="1611774379632" duration="2786000" />
+      <workItem from="1611831756692" duration="8433000" />
     </task>
     <servers />
   </component>
