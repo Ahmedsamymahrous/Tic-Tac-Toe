@@ -7,6 +7,9 @@
     <list default="true" id="64b9f6e4-25aa-4448-a2d3-114a25096dc2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MatchGroundController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MatchGroundController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/PlayWithFriendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/PlayWithFriendController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/MatchGround.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/MatchGround.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/PlayWithFriend.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/PlayWithFriend.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -241,7 +252,10 @@
       <workItem from="1611732288723" duration="7678000" />
       <workItem from="1611755501563" duration="3823000" />
       <workItem from="1611774379632" duration="2786000" />
-      <workItem from="1611831756692" duration="21566000" />
+      <workItem from="1611831756692" duration="31718000" />
+      <workItem from="1611873983270" duration="5292000" />
+      <workItem from="1611879472272" duration="784000" />
+      <workItem from="1611909127182" duration="25631000" />
     </task>
     <servers />
   </component>
@@ -297,6 +311,20 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassCastException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tictactoe/tictactoeclient/MainApp.java">

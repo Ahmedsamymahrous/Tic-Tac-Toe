@@ -63,7 +63,7 @@ public class MatchGroundController implements Initializable {
     @FXML
     private Button backBtn;
     @FXML
-    BorderPane mainPorder;
+    BorderPane mainPane;
     @FXML
     private Button matchBtn;
     @FXML
@@ -86,7 +86,7 @@ public class MatchGroundController implements Initializable {
     Thread request = null;
     Map<String, Player> elements;
     ObservableList<ListUsers> tableData;
-
+    boolean onGame = false;
     public void init(Player player,PlayerConnection connectPlayer)
     {
         this.connectPlayer = connectPlayer;
@@ -105,6 +105,8 @@ public class MatchGroundController implements Initializable {
     @FXML
     public void playMatch(ActionEvent event) throws IOException
     {
+        System.out.println(event);
+
         //get selected player from list
         ListUsers selectedUser = table.getSelectionModel().getSelectedItem();
         System.out.println("play with : "+selectedUser.getName());
@@ -119,8 +121,6 @@ public class MatchGroundController implements Initializable {
         });
         //sending selected user to play with.
         connectPlayer.serialaize("play",selectedUser.mapToPlayer());
-
-
 
     }
     @FXML
@@ -152,10 +152,9 @@ public class MatchGroundController implements Initializable {
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
+        System.out.println(window);
         window.setScene(scene);
 
-        //Map<String, Player> elements = connectPlayer.deserialize();
-        //System.out.println(elements.values().toArray()[0]);
 
         connectPlayer.closeConnection();
         System.out.println("closed");
@@ -210,20 +209,11 @@ public class MatchGroundController implements Initializable {
         request = new Thread(new Runnable() {
             @Override
             public void run() {
-                FXMLLoader loader = new FXMLLoader();
-                Parent root = null;
-                Scene scene;
+
                 Map<String, Player> elements = null;
-                loader.setLocation(getClass().getResource("/fxmls/PlayWithFriend.fxml"));
-                Stage window = (Stage) mainPorder.getScene().getWindow();
-                try {
-                    root = loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                scene = new Scene(root);
+
                 System.out.println("enterd Thread of Requests ::::");
-                while(true){
+                while(!onGame){
                 try {
                     elements = connectPlayer.deserialize();
                     if (elements.keySet().toArray()[0].equals("play")) {
@@ -231,17 +221,20 @@ public class MatchGroundController implements Initializable {
                         System.out.println(myFriend.getName() + " wanna play :::");
                         MakeAlert(myFriend);
                         //access the controller and call a method
-
                     }else if(elements.keySet().toArray()[0].equals("yes")){
-
-
                         Player myFriend = (Player) elements.values().toArray()[0];
-                        PlayWithFriendController controller = loader.getController();
-                        controller.init(player, connectPlayer);
-                        window.setScene(scene);
-                        window.show();
+                        load.setVisible(false);
+                        table.setOpacity(.7);
+                        matchBtn.setDisable(false);
+                        textLoad.setVisible(false);
+                        backBtn.setDisable(false);
+                        System.out.println("loading the Game ......");
+                        //onGame = true;
+                        //connectPlayer.serialaize("non",player);
 
-
+                        OpenGame(player,myFriend,connectPlayer);
+                        System.out.println("main loop break!!!");
+                        break;
                     }else if(elements.keySet().toArray()[0].equals("no")){
                         Player myFriend = (Player) elements.values().toArray()[0];
                         System.out.println("she said no and u are normal now :::::");
@@ -254,7 +247,7 @@ public class MatchGroundController implements Initializable {
                         Player myFriend = (Player) elements.values().toArray()[0];
                         System.out.println("offline person :::::");
                         Platform.runLater(()->{
-                            textLoad.setText("Offline Player");
+                            textLoad.setText(myFriend.getName()+" is offline or busy");
                             textLoad.setVisible(true);
                             load.setVisible(false);
                         });
@@ -283,6 +276,24 @@ public class MatchGroundController implements Initializable {
                 }
                 }
             }
+        });
+    }
+    public void OpenGame(Player player,Player myFriend,PlayerConnection connectPlayer){
+        Platform.runLater(()->{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxmls/PlayWithFriend.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            Stage  window = (Stage)mainPane.getScene().getWindow();
+            PlayWithFriendController controller = loader.getController();
+            controller.init(player,myFriend,connectPlayer);
+            window.setScene(scene);
+            window.show();
         });
     }
     public void RenderData(){
