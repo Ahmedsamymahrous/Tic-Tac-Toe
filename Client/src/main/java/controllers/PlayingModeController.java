@@ -75,14 +75,14 @@ public class PlayingModeController implements Initializable {
     private void singleModeButtonPushed(ActionEvent event) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxmls/SingleModePlay.fxml"));
+        loader.setLocation(getClass().getResource("/fxmls/Levels.fxml"));
         Parent root = loader.load();
         
         Scene scene = new Scene(root);
         
         //access the controller and call a method
-        SingleModePlayController controller = loader.getController();
-       controller.init(p,connectPlayer);
+        LevelsController controller = loader.getController();
+        controller.init(p,connectPlayer);
         
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
