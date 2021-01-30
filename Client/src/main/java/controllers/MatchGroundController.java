@@ -215,64 +215,66 @@ public class MatchGroundController implements Initializable {
                 System.out.println("enterd Thread of Requests ::::");
                 while(!onGame){
                 try {
-                    elements = connectPlayer.deserialize();
-                    if (elements.keySet().toArray()[0].equals("play")) {
-                        Player myFriend = (Player) elements.values().toArray()[0];
-                        System.out.println(myFriend.getName() + " wanna play :::");
-                        MakeAlert(myFriend);
-                        //access the controller and call a method
-                    }else if(elements.keySet().toArray()[0].equals("yes")){
-                        Player myFriend = (Player) elements.values().toArray()[0];
-                        load.setVisible(false);
-                        table.setOpacity(.7);
-                        matchBtn.setDisable(false);
-                        textLoad.setVisible(false);
-                        backBtn.setDisable(false);
-                        System.out.println("loading the Game ......");
-                        //onGame = true;
-                        //connectPlayer.serialaize("non",player);
-
-                        OpenGame(player,myFriend,connectPlayer);
-                        System.out.println("main loop break!!!");
-                        break;
-                    }else if(elements.keySet().toArray()[0].equals("no")){
-                        Player myFriend = (Player) elements.values().toArray()[0];
-                        System.out.println("she said no and u are normal now :::::");
-                        load.setVisible(false);
-                        table.setOpacity(.7);
-                        matchBtn.setDisable(false);
-                        textLoad.setVisible(false);
-                        backBtn.setDisable(false);
-                    }else if(elements.keySet().toArray()[0].equals("offline")){
-                        Player myFriend = (Player) elements.values().toArray()[0];
-                        System.out.println("offline person :::::");
-                        Platform.runLater(()->{
-                            textLoad.setText(myFriend.getName()+" is offline or busy");
-                            textLoad.setVisible(true);
+                    if((elements = connectPlayer.deserialize()) != null) {
+                        if (elements.keySet().toArray()[0].equals("play")) {
+                            Player myFriend = (Player) elements.values().toArray()[0];
+                            System.out.println(myFriend.getName() + " wanna play :::");
+                            MakeAlert(myFriend);
+                            //access the controller and call a method
+                        } else if (elements.keySet().toArray()[0].equals("yes")) {
+                            Player myFriend = (Player) elements.values().toArray()[0];
                             load.setVisible(false);
-                        });
-                        Thread.sleep(2000);
-                        table.setOpacity(.7);
-                        matchBtn.setDisable(false);
-                        textLoad.setVisible(false);
-                        backBtn.setDisable(false);
-                    }else if(elements.keySet().toArray()[0].equals("list")){
-                        System.out.println("should print list");
-                        //getting all Users from Server
-                        Map<String, ArrayList<Player>> data = connectPlayer.deserializeList();
-                        list = (ArrayList<Player>) data.values().toArray()[0];
-                        //here you will send the function List of players
-                        tableData = ViewTable(list);
-                        table.setItems(tableData);
-                    }else if(elements.keySet().toArray()[0].equals("non"))
-                    {
+                            table.setOpacity(.7);
+                            matchBtn.setDisable(false);
+                            textLoad.setVisible(false);
+                            backBtn.setDisable(false);
+                            System.out.println("loading the Game ......");
+                            //onGame = true;
+                            //connectPlayer.serialaize("non",player);
+
+                            OpenGame(player, myFriend, connectPlayer);
+                            System.out.println("main loop break!!!");
+                            break;
+                        } else if (elements.keySet().toArray()[0].equals("no")) {
+                            Player myFriend = (Player) elements.values().toArray()[0];
+                            System.out.println("she said no and u are normal now :::::");
+                            load.setVisible(false);
+                            table.setOpacity(.7);
+                            matchBtn.setDisable(false);
+                            textLoad.setVisible(false);
+                            backBtn.setDisable(false);
+                        } else if (elements.keySet().toArray()[0].equals("offline")) {
+                            Player myFriend = (Player) elements.values().toArray()[0];
+                            System.out.println("offline person :::::");
+                            Platform.runLater(() -> {
+                                textLoad.setText(myFriend.getName() + " is offline or busy");
+                                textLoad.setVisible(true);
+                                load.setVisible(false);
+                            });
+                            Thread.sleep(2000);
+                            table.setOpacity(.7);
+                            matchBtn.setDisable(false);
+                            textLoad.setVisible(false);
+                            backBtn.setDisable(false);
+                        } else if (elements.keySet().toArray()[0].equals("list")) {
+                            System.out.println("should print list");
+                            //getting all Users from Server
+                            Map<String, ArrayList<Player>> data = connectPlayer.deserializeList();
+                            list = (ArrayList<Player>) data.values().toArray()[0];
+                            //here you will send the function List of players
+                            tableData = ViewTable(list);
+                            table.setItems(tableData);
+                        } else if (elements.keySet().toArray()[0].equals("non")) {
+                            break;
+                        }
+                    }else {
+                        System.out.println("lost connection");
                         break;
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (IOException | InterruptedException e) {
+                    //e.printStackTrace();
                     System.out.println(elements);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    break;
                 }
                 }
             }
