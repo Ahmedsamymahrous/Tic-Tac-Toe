@@ -21,7 +21,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 
-
 <BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #616161;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MatchGroundController">
    <bottom>
       <GridPane BorderPane.alignment="CENTER">
@@ -127,7 +126,7 @@
                   <Image url="@../icons/load.gif" />
                </image>
             </ImageView>
-            <Label fx:id="textLoad" layoutX="123.0" layoutY="66.0" prefHeight="54.0" prefWidth="370.0" text="Waiting other Player" textFill="#970e0e" visible="false">
+            <Label fx:id="textLoad" layoutX="79.0" layoutY="66.0" prefHeight="54.0" prefWidth="446.0" text="Waiting other Player" textFill="#970e0e" visible="false">
                <font>
                   <Font name="System Bold" size="37.0" />
                </font>

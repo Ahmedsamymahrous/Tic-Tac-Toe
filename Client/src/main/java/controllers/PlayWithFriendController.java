@@ -30,6 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -45,7 +46,11 @@ public class PlayWithFriendController implements Initializable {
     @FXML
     private ImageView player2Icon;
     @FXML
+    private ImageView result;
+    @FXML
     private Label player1Name;
+    @FXML
+    private Label resultText;
     @FXML
     private Label option1;
     @FXML
@@ -114,10 +119,6 @@ public class PlayWithFriendController implements Initializable {
         this.player2 = player2;
         RenderData();
         game.start();
-        Platform.runLater(()->{
-            option1.setText(myOption);
-            option2.setText(friendOption);
-        });
     }
     private void RenderData(){
         Platform.runLater(()->{
@@ -268,19 +269,24 @@ public class PlayWithFriendController implements Initializable {
            // Platform.runLater(()->{
                 buttonSelected.add(btn0);
                 connectPlayer.serialaize("0",player);
+                connectPlayer.serialaize("after",player);
+            stopPlay();
            // });
         });
         btn1.setOnAction(event -> {
            // Platform.runLater(()->{
                 buttonSelected.add(btn1);
                 connectPlayer.serialaize("1",player);
+                connectPlayer.serialaize("after",player);
+            stopPlay();
            // });
         });
         btn2.setOnAction(event -> {
            // Platform.runLater(()->{
                 buttonSelected.add(btn2);
                 connectPlayer.serialaize("2",player);
-
+                connectPlayer.serialaize("after",player);
+            stopPlay();
            // });
 
         });
@@ -288,7 +294,8 @@ public class PlayWithFriendController implements Initializable {
           //  Platform.runLater(()->{
                 buttonSelected.add(btn3);
                 connectPlayer.serialaize("3",player);
-
+                connectPlayer.serialaize("after",player);
+            stopPlay();
          //   });
 
         });
@@ -296,6 +303,8 @@ public class PlayWithFriendController implements Initializable {
           //  Platform.runLater(()->{
                 buttonSelected.add(btn4);
                 connectPlayer.serialaize("4",player);
+                connectPlayer.serialaize("after",player);
+            stopPlay();
           //  });
 
         });
@@ -303,7 +312,8 @@ public class PlayWithFriendController implements Initializable {
           //  Platform.runLater(()->{
                 buttonSelected.add(btn5);
                 connectPlayer.serialaize("5",player);
-
+                connectPlayer.serialaize("after",player);
+            stopPlay();
          //   });
 
         });
@@ -311,6 +321,8 @@ public class PlayWithFriendController implements Initializable {
          //   Platform.runLater(()->{
                 buttonSelected.add(btn6);
                 connectPlayer.serialaize("6",player);
+                connectPlayer.serialaize("after",player);
+            stopPlay();
 
            // });
 
@@ -319,14 +331,18 @@ public class PlayWithFriendController implements Initializable {
           //  Platform.runLater(()->{
                 buttonSelected.add(btn7);
                 connectPlayer.serialaize("7",player);
-
+                connectPlayer.serialaize("after",player);
+                stopPlay();
          //   });
 
         });
         btn8.setOnAction(event -> {
           //  Platform.runLater(()->{
                 buttonSelected.add(btn8);
+
                 connectPlayer.serialaize("8",player);
+                connectPlayer.serialaize("after",player);
+                stopPlay();
            // });
 
         });
@@ -360,17 +376,43 @@ public class PlayWithFriendController implements Initializable {
                                 buttonList.get(Integer.parseInt(move)).setText(friendOption);
                             }
                             buttonSelected.add(buttonList.get(Integer.parseInt(move)));
-                            AllowPlay();
-                            DisapleSelected();
-                            connectPlayer.serialaize("after",player);
+                            buttonList.get(Integer.parseInt(move)).setDisable(true);
+                            if(CheckMe(myOption))
+                            {
+                                connectPlayer.serialaize("win",player);
+                                System.out.println(player.getName() + " Win ::::::::");
+                            }
                         });
                     }else if(elements.keySet().toArray()[0].equals("after")){
-                        if(myFriend.getPlayerID() == player2.getPlayerID()){
-                            stopPlay();
-                        }else{
+                            AllowPlay();
                             DisapleSelected();
-                        }
 
+                    }else if(elements.keySet().toArray()[0].equals("win")){
+                        System.out.println("you won + "+ player.getName());
+                        Platform.runLater(()->{
+                            result.setImage(new Image(getClass().getResourceAsStream("/icons/win.gif")));
+                            result.setVisible(true);
+                            stopPlay();
+                            resultText.setText("You Win");
+                            resultText.setVisible(true);
+                            resultText.setTextFill(Paint.valueOf("#f6ff00"));
+                           //result.setVisible(false);
+
+                        });
+
+                    }else if(elements.keySet().toArray()[0].equals("lose")){
+                        System.out.println("you lose + "+ player.getName());
+                        Platform.runLater(()->{
+                            result.setImage(new Image(getClass().getResourceAsStream("/icons/lose.gif")));
+                            result.setVisible(true);
+                            resultText.setText("You lose");
+                            resultText.setVisible(true);
+                            resultText.setTextFill(Paint.valueOf("#7c0006"));
+                            stopPlay();
+
+                            //result.setVisible(false);
+
+                        });
                     }
 
 
@@ -384,7 +426,6 @@ public class PlayWithFriendController implements Initializable {
         });
 
     }
-
     public boolean CheckMe(String option) {
         int conut = 0;
         for (int j = 0; j < 3; j++) {
@@ -409,10 +450,10 @@ public class PlayWithFriendController implements Initializable {
                 return true;
             }
         }
-        if(buttonList.get(0).getText() == option && buttonList.get(9).getText() == option && buttonList.get(5).getText() == option)
+        if(buttonList.get(0).getText() == option && buttonList.get(8).getText() == option && buttonList.get(4).getText() == option)
         {
             return true;
-        }else if(buttonList.get(7).getText() == option && buttonList.get(5).getText() == option && buttonList.get(3).getText() == option)
+        }else if(buttonList.get(6).getText() == option && buttonList.get(4).getText() == option && buttonList.get(2).getText() == option)
         {
             return true;
         }
