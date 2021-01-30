@@ -1,4 +1,8 @@
 # Tic Tac Toe GAME
+[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
 A Client/Server Tic Tac Toe Game, these projects(client&server) were done @ ITI intake 41 by students of Cloud Platform Development (Open Source Track).
 
