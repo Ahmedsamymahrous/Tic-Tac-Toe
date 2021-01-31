@@ -80,6 +80,8 @@ public class MatchGroundController implements Initializable {
     private TableColumn<ListUsers, ImageView> avatarCol ;
     @FXML
     private BorderPane pane1;
+    @FXML
+    private ImageView reloadImage;
     private PlayerConnection connectPlayer;
     private Player player,myFriend;
     ArrayList<Player> list;
@@ -87,6 +89,13 @@ public class MatchGroundController implements Initializable {
     Map<String, Player> elements;
     ObservableList<ListUsers> tableData;
     boolean onGame = false;
+    @FXML
+    private void ImageReload(ActionEvent event) throws IOException
+    {
+        connectPlayer.serialaize("list",player);
+    }
+
+
     public void init(Player player,PlayerConnection connectPlayer)
     {
         this.connectPlayer = connectPlayer;
@@ -267,14 +276,10 @@ public class MatchGroundController implements Initializable {
                         } else if (elements.keySet().toArray()[0].equals("non")) {
                             break;
                         }
-                    }else {
-                        System.out.println("lost connection");
-                        break;
                     }
                 } catch (IOException | InterruptedException e) {
                     //e.printStackTrace();
                     System.out.println(elements);
-                    break;
                 }
                 }
             }

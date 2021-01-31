@@ -9,10 +9,8 @@
         <module name="TicTacToeClient" />
       </profile>
     </annotationProcessing>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="TicTacToeClient" options="-bootclasspath &quot;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3\jre64\lib\resources.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3\jre64\lib\rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3\jre64\lib\sunrsasign.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3\jre64\lib\jsse.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3\jre64\lib\jce.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3\jre64\lib\charsets.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3\jre64\lib\jfr.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3\jre64\classes;C:/Program Files (x86)/Java/jdk1.8.0_60/jre/lib/jfxrt.jar&quot;" />
-    </option>
+    <bytecodeTargetLevel>
+      <module name="TicTacToeClient" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
