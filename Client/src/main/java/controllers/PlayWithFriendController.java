@@ -114,13 +114,37 @@ public class PlayWithFriendController implements Initializable {
 
     public void init(Player player1,Player player2,PlayerConnection connectPlayer)
     {
+        buttonList = new ArrayList<Button>();
+        buttonSelected = new ArrayList<Button>();
+        buttonList.add(btn0);
+        buttonList.add(btn1);
+        buttonList.add(btn2);
+        buttonList.add(btn3);
+        buttonList.add(btn4);
+        buttonList.add(btn5);
+        buttonList.add(btn6);
+        buttonList.add(btn7);
+        buttonList.add(btn8);
+        CleanArea();
         System.out.println(player1);
         System.out.println(player2);
+        AllowPlay();
+        result.setVisible(false);
+        resultText.setVisible(false);
         this.connectPlayer = connectPlayer;
         this.player = player1;
         this.player2 = player2;
         RenderData();
+
         game.start();
+        System.out.println(":::::::::::::::: " +buttonSelected);
+        System.out.println(":::::::::::::::: " +buttonList);
+    }
+    public void CleanArea(){
+        for(Button Btn : buttonList)
+        {
+            Btn.setText(" ");
+        }
     }
     private void RenderData(){
         Platform.runLater(()->{
@@ -295,30 +319,18 @@ public class PlayWithFriendController implements Initializable {
             Label label = new Label();
             label.setText("Would u like to play again?");
             Button accept = new Button("Ok");
+            Button cancel = new Button("Cancel");
             accept.setOnAction(event -> {
                 //connectPlayer.serialaize("rematch",reqPlayer);
-                Platform.runLater(() -> {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/fxmls/MatchGround.fxml"));
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Scene scene = new Scene(root);
-                    MatchGroundController controller = loader.getController();
-                    controller.init(player, connectPlayer);
-
-                    Stage window1 = (Stage) borderPane.getScene().getWindow();
-
-                    window1.setScene(scene);
-                    window1.show();
-                    window.close();
-                });
+                connectPlayer.serialaize("rematch",player);
+                window.close();
+            });
+            cancel.setOnAction(event -> {
+                connectPlayer.serialaize("norematch", player);
+                window.close();
             });
             VBox layout = new VBox(10);
-            layout.getChildren().addAll(label, accept);
+            layout.getChildren().addAll(label, accept,cancel);
             layout.setAlignment(Pos.CENTER);
             Scene scene = new Scene(layout);
             window.setScene(scene);
@@ -331,97 +343,60 @@ public class PlayWithFriendController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        buttonList = new ArrayList<Button>();
-        buttonSelected = new ArrayList<Button>();
-        buttonList.add(btn0);
-        buttonList.add(btn1);
-        buttonList.add(btn2);
-        buttonList.add(btn3);
-        buttonList.add(btn4);
-        buttonList.add(btn5);
-        buttonList.add(btn6);
-        buttonList.add(btn7);
-        buttonList.add(btn8);
+
         btn0.setOnAction(event -> {
-           // Platform.runLater(()->{
                 buttonSelected.add(btn0);
                 connectPlayer.serialaize("0",player);
                 connectPlayer.serialaize("after",player);
             stopPlay();
-           // });
         });
         btn1.setOnAction(event -> {
-           // Platform.runLater(()->{
                 buttonSelected.add(btn1);
                 connectPlayer.serialaize("1",player);
                 connectPlayer.serialaize("after",player);
             stopPlay();
-           // });
         });
         btn2.setOnAction(event -> {
-           // Platform.runLater(()->{
                 buttonSelected.add(btn2);
                 connectPlayer.serialaize("2",player);
                 connectPlayer.serialaize("after",player);
             stopPlay();
-           // });
-
         });
         btn3.setOnAction(event -> {
-          //  Platform.runLater(()->{
                 buttonSelected.add(btn3);
                 connectPlayer.serialaize("3",player);
                 connectPlayer.serialaize("after",player);
             stopPlay();
-         //   });
-
         });
         btn4.setOnAction(event -> {
-          //  Platform.runLater(()->{
                 buttonSelected.add(btn4);
                 connectPlayer.serialaize("4",player);
                 connectPlayer.serialaize("after",player);
             stopPlay();
-          //  });
-
         });
         btn5.setOnAction(event -> {
-          //  Platform.runLater(()->{
                 buttonSelected.add(btn5);
                 connectPlayer.serialaize("5",player);
                 connectPlayer.serialaize("after",player);
             stopPlay();
-         //   });
-
         });
         btn6.setOnAction(event -> {
-         //   Platform.runLater(()->{
                 buttonSelected.add(btn6);
                 connectPlayer.serialaize("6",player);
                 connectPlayer.serialaize("after",player);
             stopPlay();
-
-           // });
-
         });
         btn7.setOnAction(event -> {
-          //  Platform.runLater(()->{
                 buttonSelected.add(btn7);
                 connectPlayer.serialaize("7",player);
                 connectPlayer.serialaize("after",player);
                 stopPlay();
-         //   });
-
         });
         btn8.setOnAction(event -> {
-          //  Platform.runLater(()->{
                 buttonSelected.add(btn8);
-
                 connectPlayer.serialaize("8",player);
                 connectPlayer.serialaize("after",player);
                 stopPlay();
-           // });
-
         });
         game = new Thread(new Runnable() {
             @Override
@@ -457,21 +432,16 @@ public class PlayWithFriendController implements Initializable {
                             buttonList.get(Integer.parseInt(move)).setDisable(true);
                             if(CheckMe(myOption))
                             {
-                                //win = 1;
-                                //flag = 0;
                                 connectPlayer.serialaize("win",player);
                                 System.out.println(player.getName() + " Win ::::::::");
                                 weHaveWinner();
-                                rematch(player);
-                                //break;
+
                             }
                             else if(isFull())//full
                             {
                                 //win = 1;
                                 connectPlayer.serialaize("draw",player);
                                 makeAlertYouEven();
-                                rematch(player);
-                                //break;
                             }
                         });
                     }else if(elements.keySet().toArray()[0].equals("after")){
@@ -487,9 +457,8 @@ public class PlayWithFriendController implements Initializable {
                             resultText.setText("You Win");
                             resultText.setVisible(true);
                             resultText.setTextFill(Paint.valueOf("#f6ff00"));
-                           //result.setVisible(false);
+                            rematch(player);
                         });
-                        break;
                     }else if(elements.keySet().toArray()[0].equals("lose")){
                         System.out.println("you lose + "+ player.getName());
                         Platform.runLater(()->{
@@ -501,9 +470,7 @@ public class PlayWithFriendController implements Initializable {
                             stopPlay();
                             rematch(player);
                         });
-                        break;
-                    }
-                    else if(elements.keySet().toArray()[0].equals("draw")){
+                    }else if(elements.keySet().toArray()[0].equals("draw")){
                         System.out.println("you re even + "+ player.getName());
                         Platform.runLater(()->{
                             result.setImage(new Image(getClass().getResourceAsStream("/icons/even.gif")));
@@ -512,9 +479,49 @@ public class PlayWithFriendController implements Initializable {
                             resultText.setVisible(true);
                             resultText.setTextFill(Paint.valueOf("#111111"));
                             stopPlay();
+                            rematch(player);
                         });
                     }else if(elements.keySet().toArray()[0].equals("rematch")){
+                        System.out.println("they will start new Game !!!");
+                        Platform.runLater(() -> {
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setLocation(getClass().getResource("/fxmls/PlayWithFriend.fxml"));
+                            Parent root = null;
+                            try {
+                                root = loader.load();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Scene scene = new Scene(root);
+                            PlayWithFriendController controller = loader.getController();
+                            controller.init(player,player2, connectPlayer);
 
+                            Stage window1 = (Stage) borderPane.getScene().getWindow();
+
+                            window1.setScene(scene);
+                            window1.show();
+                        });
+                        break;
+                    }else if(elements.keySet().toArray()[0].equals("norematch")){
+                        System.out.println("they will not start new Game ???");
+                        Platform.runLater(() -> {
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
+                            Parent root = null;
+                            try {
+                                root = loader.load();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Scene scene = new Scene(root);
+                            PlayingModeController controller = loader.getController();
+                            controller.init(player, connectPlayer);
+
+                            Stage window1 = (Stage) borderPane.getScene().getWindow();
+
+                            window1.setScene(scene);
+                            window1.show();
+                        });
                     }else if(elements.keySet().toArray()[0].equals("chat")){
                         elements = connectPlayer.deserialize();
                         String msg = (String) elements.keySet().toArray()[0];
@@ -582,10 +589,5 @@ public class PlayWithFriendController implements Initializable {
         }
         return true;
     }
-    public void emptyList(){
-        for(Button Btn : buttonList)
-        {
-            Btn.setText(" ");
-        }
-    }
+
 }
