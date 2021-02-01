@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="TicTacToeClient" options="-bootclasspath &quot;F:\jetbrains\ideaIU-2019.1.3.win\jre32\lib\resources.jar;F:\jetbrains\ideaIU-2019.1.3.win\jre32\lib\rt.jar;F:\jetbrains\ideaIU-2019.1.3.win\jre32\lib\sunrsasign.jar;F:\jetbrains\ideaIU-2019.1.3.win\jre32\lib\jsse.jar;F:\jetbrains\ideaIU-2019.1.3.win\jre32\lib\jce.jar;F:\jetbrains\ideaIU-2019.1.3.win\jre32\lib\charsets.jar;F:\jetbrains\ideaIU-2019.1.3.win\jre32\lib\jfr.jar;F:\jetbrains\ideaIU-2019.1.3.win\jre32\classes;C:/Program Files/Java/jdk1.8.0_202/jre/lib/jfxrt.jar&quot;" />
+      <module name="TicTacToeClient" options="" />
     </option>
   </component>
 </project>

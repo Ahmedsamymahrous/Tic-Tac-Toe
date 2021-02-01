@@ -40,6 +40,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -86,17 +87,33 @@ public class MatchGroundController implements Initializable {
     private BorderPane pane1;
     @FXML
     private ImageView reloadImage;
+    @FXML
+    private Label notifyText;
+    @FXML
+    private ImageView notifyImage;
+    @FXML
+    private TextArea chatView;
+    @FXML
+    private TextField message;
+    @FXML
+    private Pane chatRoom;
     private PlayerConnection connectPlayer;
     private Player player,myFriend;
+    private boolean chatOn = false;
     ArrayList<Player> list;
     Thread request = null;
     Map<String, Player> elements;
     ObservableList<ListUsers> tableData;
     boolean onGame = false;
+
     @FXML
     private void ImageReload(ActionEvent event) throws IOException
     {
         connectPlayer.serialaize("list",player);
+        Platform.runLater(()->{
+            notifyText.setVisible(false);
+            notifyImage.setVisible(false);
+        });
     }
 
 
@@ -283,6 +300,31 @@ public class MatchGroundController implements Initializable {
                             //here you will send the function List of players
                             tableData = ViewTable(list);
                             table.setItems(tableData);
+                        }else if (elements.keySet().toArray()[0].equals("notify")) {
+                            Player myFriend = (Player) elements.values().toArray()[0];
+                            System.out.println("notify");
+                            Platform.runLater(()->{
+                                notifyText.setText(myFriend.getName()+" is Online");
+                                notifyImage.setImage(new Image(getClass().getResourceAsStream("/icons/"+myFriend.getAvatar())));
+                                notifyText.setVisible(true);
+                                notifyImage.setVisible(true);
+                                try {
+                                    Thread.sleep(2000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                        }else if(elements.keySet().toArray()[0].equals("globalChat")){
+                            elements = connectPlayer.deserialize();
+                            String msg = (String) elements.keySet().toArray()[0];
+                            Platform.runLater(()->{
+                                chatView.appendText(msg);
+                                if(!chatRoom.isVisible()){
+                                    chatBtn.setTextFill(Paint.valueOf("#32c41b"));
+                                }
+                            });
+
+
                         } else if (elements.keySet().toArray()[0].equals("non")) {
                             break;
                         }
@@ -290,10 +332,24 @@ public class MatchGroundController implements Initializable {
                 } catch (IOException | InterruptedException e) {
                     //e.printStackTrace();
                     System.out.println(elements);
+                    break;
                 }
                 }
             }
         });
+    }
+    @FXML
+    private void SendMsg(ActionEvent event) {
+        String msg = message.getText();
+        message.clear();
+        connectPlayer.serialaize("globalChat",player);
+        connectPlayer.serialaize(msg,player);
+    }
+    @FXML
+    private void GlobalChat(ActionEvent event) {
+        chatOn = !chatOn;
+        chatRoom.setVisible(chatOn);
+        chatBtn.setTextFill(Paint.valueOf("#c61a1a"));
     }
     public void OpenGame(Player player,Player myFriend,PlayerConnection connectPlayer){
         Platform.runLater(()->{
