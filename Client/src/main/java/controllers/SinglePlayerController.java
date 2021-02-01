@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
 import com.jfoenix.controls.JFXButton;
 import dbconnection.Player;
 import dbconnection.PlayerConnection;
@@ -327,6 +329,8 @@ public class SinglePlayerController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInLeft(root).play();
         window.show();
     }
 

@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import animatefx.animation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -130,6 +131,10 @@ public class LoginController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+
+        // animation added here
+        new SlideInRight(root).play();
+
         window.show();
     }
 
@@ -148,7 +153,8 @@ public class LoginController implements Initializable {
         System.out.println(elements.values().toArray()[0]);
 
         connectPlayer.closeConnection();
-        System.out.println("closed");
+        // animation added here
+        new SlideInLeft(root).play();
         window.show();
     }
 
@@ -168,6 +174,8 @@ public class LoginController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInRight(root).play();
         window.show();
     }
     
@@ -186,6 +194,8 @@ public class LoginController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInRight(root).play();
         window.show();
     }
       private boolean validateEmailPattern(String email)

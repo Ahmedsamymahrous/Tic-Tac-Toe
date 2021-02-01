@@ -1,5 +1,6 @@
 package com.tictactoe.tictactoeclient;
 
+import animatefx.animation.*;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +17,26 @@ public class MainApp extends Application {
         
         Scene scene = new Scene(root);
         //scene.getStylesheets().add("/styles/Styles.css");
-        
+
         stage.setTitle("TicTacToe JavaFX");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+        new FadeIn(root).play();
+
+//
+//        //next
+//        // animation added here
+//        new SlideInRight(root).play();
+//
+//        //back
+//        // animation added here
+//       new SlideInRight(root).play();
+
+        //profile
+//        // animation added here
+//       new SlideInDown(root).play();
+
     }
 
     /**

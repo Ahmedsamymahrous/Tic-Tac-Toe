@@ -5,6 +5,10 @@
  */
 package controllers;
 
+import animatefx.animation.SlideInDown;
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
+import animatefx.animation.SlideInUp;
 import dbconnection.Player;
 import java.awt.Color;
 import java.io.IOException;
@@ -68,6 +72,8 @@ public class PlayingModeController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(scene);
+        // animation added here
+        new SlideInRight(root).play();
         window.show();
     }
 
@@ -88,6 +94,8 @@ public class PlayingModeController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(scene);
+        // animation added here
+        new SlideInRight(root).play();
         window.show();
     }
 
@@ -106,7 +114,8 @@ public class PlayingModeController implements Initializable {
         System.out.println(elements.values().toArray()[0]);
 
         connectPlayer.closeConnection();
-        System.out.println("closed");
+        // animation added here
+        new SlideInLeft(root).play();
         window.show();
     }
 
@@ -127,6 +136,8 @@ public class PlayingModeController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(scene);
+        // animation added here
+        new SlideInDown(root).play();
         window.show();
     }
     /**

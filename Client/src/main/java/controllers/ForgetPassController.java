@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
 import dbconnection.Player;
 import java.io.IOException;
 import java.net.URL;
@@ -87,6 +89,8 @@ public class ForgetPassController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInLeft(root).play();
         window.show();
     }
     @FXML
@@ -105,6 +109,8 @@ public class ForgetPassController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInLeft(root).play();
         window.show();
     }
     @FXML

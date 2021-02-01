@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
 import com.jfoenix.controls.JFXButton;
 import dbconnection.PlayerConnection;
 import dbconnection.Player;
@@ -126,6 +128,8 @@ public class SignUpController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInRight(root).play();
         window.show();
     }
     @FXML
@@ -144,6 +148,8 @@ public class SignUpController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInRight(root).play();
         window.show();
     }
     private void alertError(String title , String msg){

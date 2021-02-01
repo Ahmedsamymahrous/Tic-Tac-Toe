@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dbconnection.Player;
@@ -71,20 +73,22 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void logoutButtonPushed(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Home.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/Home.fxml"));
+        Parent root = loader.load();
+
         Scene scene = new Scene(root);
 
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
-        connectPlayer.serialaize("logout", player);
-        Map<String, Player> elements = connectPlayer.deserialize();
-        System.out.println(elements.values().toArray()[0]);
-
         connectPlayer.closeConnection();
         System.out.println("closed");
+        // animation added here
+        new SlideInLeft(root).play();
         window.show();
+
     }
 
     @FXML
@@ -104,8 +108,11 @@ public class ProfileController implements Initializable {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             window.setScene(scene);
+            // animation added here
+            new SlideInLeft(root).play();
             window.show();
         } else {
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
             Parent root = loader.load();
@@ -120,6 +127,8 @@ public class ProfileController implements Initializable {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             window.setScene(scene);
+            // animation added here
+            new SlideInLeft(root).play();
             window.show();
         }
     }
@@ -208,6 +217,7 @@ public class ProfileController implements Initializable {
         imgProfilePic = player.getAvatar();
         imgProfile.setImage(new Image(getClass().getResourceAsStream("/icons/" + imgProfilePic)));
     }
+
 
 
 }

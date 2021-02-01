@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
 import dbconnection.PlayerConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,6 +55,8 @@ public class HomeController  implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInRight(root).play();
         window.show();
     }
     @FXML
@@ -72,6 +76,8 @@ public class HomeController  implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInRight(root).play();
         window.show();
     }
 

@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
 import dbconnection.Player;
 import dbconnection.PlayerConnection;
 import singleMode.Game;
@@ -75,6 +77,8 @@ public class LevelsController implements Initializable {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
             window.setScene(scene);
+            // animation added here
+            new SlideInLeft(root).play();
             window.show();
     }
     
@@ -83,65 +87,42 @@ public class LevelsController implements Initializable {
     private void easyButtonAction(ActionEvent event) throws IOException 
     {
         Game.setLevel(1);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxmls/SinglePlayer.fxml"));
-
-        Parent root = loader.load();
-        
-        Scene scene = new Scene(root);
-        
-        //access the controller and call a method
-        SinglePlayerController controller = loader.getController();
-        controller.init(p,connectPlayer);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(scene);
-        window.show();
+        nextPage(event);
     }
     
     @FXML
     private void mediumButtonAction(ActionEvent event) throws IOException 
     {
         Game.setLevel(2);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxmls/SinglePlayer.fxml"));
-
-        Parent root = loader.load();
-        
-        Scene scene = new Scene(root);
-        
-        //access the controller and call a method
-        SinglePlayerController controller = loader.getController();
-        controller.init(p,connectPlayer);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(scene);
-        window.show();
+        nextPage(event);
     }
     
     @FXML
     private void hardButtonAction(ActionEvent event) throws IOException 
     {
         Game.setLevel(3);
+        nextPage(event);
+    }
+
+    private void nextPage(ActionEvent event) throws IOException
+    {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxmls/SinglePlayer.fxml"));
 
         Parent root = loader.load();
-        
+
         Scene scene = new Scene(root);
-        
+
         //access the controller and call a method
         SinglePlayerController controller = loader.getController();
         controller.init(p,connectPlayer);
-        
+
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+
         window.setScene(scene);
+        // animation added here
+        new SlideInRight(root).play();
         window.show();
     }
 

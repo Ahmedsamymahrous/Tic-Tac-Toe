@@ -5,6 +5,10 @@
  */
 package controllers;
 
+import animatefx.animation.SlideInDown;
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
+import animatefx.animation.SlideInUp;
 import dbconnection.ListUsers;
 import dbconnection.Player;
 
@@ -149,6 +153,8 @@ public class MatchGroundController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(scene);
+        // animation added here
+        new SlideInDown(root).play();
         window.show();
     }
     @FXML
@@ -167,6 +173,8 @@ public class MatchGroundController implements Initializable {
 
         connectPlayer.closeConnection();
         System.out.println("closed");
+        // animation added here
+        new SlideInLeft(root).play();
         window.show();
     }
     @FXML
@@ -184,6 +192,8 @@ public class MatchGroundController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(scene);
+        // animation added here
+        new SlideInLeft(root).play();
         window.show();
     }
     //here we view users on table
