@@ -5,7 +5,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
 A Client/Server Tic Tac Toe Game, these projects(client&server) were done @ ITI intake 41 by students of Cloud Platform Development (Open Source Track).
-
+<img src="https://github.com/ayaabdo/TicTacToe/blob/master/Project-Gif.gif?raw=true"/>
 # Contents
 
 - [Demo For The Gameplay](#demo-for-the-gameplay)
