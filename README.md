@@ -19,7 +19,7 @@ A Client/Server Tic Tac Toe Game, these projects(client&server) were done @ ITI 
 	- [Client Side](#client-side)
 
 ## Demo For The Gameplay
-We will put the video here.
+<img src="https://github.com/ayaabdo/TicTacToe/blob/master/Project-Gif.gif?raw=true"/>
 
 
 
