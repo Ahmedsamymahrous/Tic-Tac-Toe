@@ -2,28 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98af1d42-aafb-45ad-bfd7-e44aec10ba23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__de_jensd_fontawesomefx_8_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToeClient.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToeClient.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tictactoe/tictactoeclient/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tictactoe/tictactoeclient/MainApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ChangeProfilePictureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ChangeProfilePictureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ProfileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/guest-male.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/robot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/SinglePlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/SinglePlayerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/ForgetPass.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/ForgetPass.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/Home.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/Levels.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/Levels.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/PlayingMode.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/PlayingMode.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/Profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/Profile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/SignUp.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/SinglePlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/SinglePlayer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/changeProfilePicture.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/changeProfilePicture.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -48,29 +31,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controllers/ProfileController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/SinglePlayer.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="183" column="41" selection-start-line="183" selection-start-column="41" selection-end-line="183" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/changeProfilePicture.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="162" column="65" selection-start-line="162" selection-start-column="65" selection-end-line="162" selection-end-column="65" />
+            <state relative-caret-position="1071">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
+              <folding>
+                <element signature="n#Label#5;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#!!top" />
+              </folding>
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controllers/ChangeProfilePictureController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/Levels.fxml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/changeProfilePicture.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
+            <state relative-caret-position="344">
+              <caret line="162" column="65" selection-start-line="162" selection-start-column="65" selection-end-line="162" selection-end-column="65" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controllers/SinglePlayerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4496">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,9 +91,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/fxmls/ForgetPass.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fxmls/PlayingMode.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/controllers/LevelsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controllers/SinglePlayerController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxmls/changeProfilePicture.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/controllers/ChangeProfilePictureController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controllers/SinglePlayerController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxmls/SinglePlayer.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxmls/Levels.fxml" />
       </list>
     </option>
   </component>
@@ -233,12 +235,12 @@
       <updated>1612147040202</updated>
       <workItem from="1612147043706" duration="4551000" />
       <workItem from="1612151880834" duration="3155000" />
-      <workItem from="1612155319878" duration="1217000" />
+      <workItem from="1612155319878" duration="2367000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8923000" />
+    <option name="totallyTimeSpent" value="10073000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -314,28 +316,9 @@
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/SinglePlayer.fxml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/SinglePlayerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/MatchGround.fxml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/Levels.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="45" column="95" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="95" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/Profile.fxml">
       <provider selected="true" editor-type-id="text-editor">
@@ -353,10 +336,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tictactoe/tictactoeclient/MainApp.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/ChangeProfilePictureController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        <state relative-caret-position="247">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
         </state>
       </provider>
     </entry>
@@ -367,20 +350,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tictactoe/tictactoeclient/MainApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/changeProfilePicture.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
+        <state relative-caret-position="344">
           <caret line="162" column="65" selection-start-line="162" selection-start-column="65" selection-end-line="162" selection-end-column="65" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/ChangeProfilePictureController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/SinglePlayer.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        <state relative-caret-position="1071">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="n#Label#5;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#!!top" />
+          </folding>
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/SinglePlayerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4496">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxmls/Levels.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">
