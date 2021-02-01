@@ -39,16 +39,21 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label fx:id="player1MainScore" layoutX="16.0" layoutY="104.0" prefHeight="56.0" prefWidth="147.0" text="      0" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="player1MainScore" layoutX="130.0" layoutY="60.0" prefHeight="56.0" prefWidth="147.0" text="      0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label fx:id="player1Name1" layoutX="20.0" layoutY="64.0" prefHeight="56.0" prefWidth="168.0" text="Main Score" textFill="WHITE">
+            <Label fx:id="player1Name1" layoutX="120.0" layoutY="14.0" prefHeight="56.0" prefWidth="168.0" text="Main Score" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
+			<JFXButton fx:id="backButton" layoutX="14.0" layoutY="30.0" onAction="#backButtonAction" style="-fx-background-color: #FCFC04;" text="Back">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
       <GridPane layoutX="255.0" layoutY="228.0" prefHeight="517.0" prefWidth="700.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="228.0">

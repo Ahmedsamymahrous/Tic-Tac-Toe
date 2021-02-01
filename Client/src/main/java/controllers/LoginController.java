@@ -27,7 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import javafx.scene.control.Hyperlink;
 import dbconnection.PlayerConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,7 +61,7 @@ public class LoginController implements Initializable {
     @FXML
     private Button signinbtn;
     @FXML
-    private JFXButton forgetpassbtn;
+    private Hyperlink forgetpassbtn;
     @FXML
     private JFXButton backbtn;
     @FXML

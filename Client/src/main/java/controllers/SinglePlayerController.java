@@ -12,12 +12,21 @@ import singleMode.Game;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import java.io.IOException;
+
 
 
 /**
@@ -60,6 +69,8 @@ public class SinglePlayerController implements Initializable {
     private JFXButton button8;
     @FXML
     private JFXButton button9;
+	@FXML
+    private Button backButton;
     
     
 
@@ -282,4 +293,23 @@ public class SinglePlayerController implements Initializable {
         button8.setOnMouseReleased(e->{game.play(2,1);});
         button9.setOnMouseReleased(e->{game.play(2,2);});   
     }   
+	
+	@FXML
+    private void backButtonAction(ActionEvent event)  throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+
+            //access the controller and call a method
+            PlayingModeController controller = loader.getController();
+            controller.init(player,connectPlayer);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(scene);
+            window.show();
+    }
 }

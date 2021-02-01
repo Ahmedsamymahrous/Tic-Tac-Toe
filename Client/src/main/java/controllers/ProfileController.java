@@ -48,8 +48,6 @@ public class ProfileController implements Initializable {
     @FXML
     private JFXTextField tfPassword;
     @FXML
-    private JFXTextField tfScore;
-    @FXML
     private Button btnSubmit;
     @FXML
     private JFXButton btnBackHome;
@@ -67,7 +65,6 @@ public class ProfileController implements Initializable {
         tfName.setText(player.getName());
         tfEmail.setText(player.getEmail());
         tfPassword.setText(player.getPassword());
-        tfScore.setText(Integer.toString(player.getMain_score()));
         imgProfile.setImage(new Image(getClass().getResourceAsStream("/icons/" + player.getAvatar())));
         imgProfilePic = player.getAvatar();
     }
@@ -208,7 +205,6 @@ public class ProfileController implements Initializable {
         tfName.setText(player.getName());
         tfEmail.setText(player.getEmail());
         tfPassword.setText(player.getPassword());
-        tfScore.setText(Integer.toString(player.getMain_score()));
         imgProfilePic = player.getAvatar();
         imgProfile.setImage(new Image(getClass().getResourceAsStream("/icons/" + imgProfilePic)));
     }

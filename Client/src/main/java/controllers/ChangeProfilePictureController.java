@@ -22,9 +22,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import singleMode.Game;
 
 /**
  * FXML Controller class
@@ -32,12 +34,12 @@ import javafx.stage.Stage;
  * @author Islam
  */
 public class ChangeProfilePictureController implements Initializable {
-    private Player player;
+
     @FXML
-    private ImageView pic1;
-    @FXML
-    private ImageView pic2;
+    private Button backButton;
+
     private PlayerConnection connectPlayer;
+    private Player player;
 
     /**
      * Initializes the controller class.
@@ -61,6 +63,26 @@ public class ChangeProfilePictureController implements Initializable {
 
         //access the controller and call a method
         player.setAvatar(img);
+        ProfileController controller = loader.getController();
+        controller.init(player,connectPlayer);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void backButtonAction(ActionEvent event) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/Profile.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        //access the controller and call a method
         ProfileController controller = loader.getController();
         controller.init(player,connectPlayer);
 

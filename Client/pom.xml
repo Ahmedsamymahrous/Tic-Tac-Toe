@@ -145,5 +145,11 @@
             <version>1.4.7</version>
             <type>jar</type>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx -->
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.9</version>
+        </dependency>
     </dependencies>
 </project>

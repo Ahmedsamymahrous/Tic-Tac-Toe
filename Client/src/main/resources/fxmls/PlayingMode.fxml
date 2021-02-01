@@ -2,63 +2,55 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="home" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="703.0" style="-fx-background-color:  #e0d6db;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayingModeController">
+<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="875.0" style="-fx-background-color: #262626;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayingModeController">
    <children>
-      <ImageView fitHeight="452.0" fitWidth="703.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="585.0" fitWidth="875.0" pickOnBounds="true">
          <image>
-            <Image url="@../icons/tic.jpg" />
+            <Image url="@../icons/blackone.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="login" layoutX="383.0" layoutY="198.0" mnemonicParsing="false" onAction="#multiModeButtonPushed" prefHeight="81.0" prefWidth="282.0" style="-fx-background-color:  #e0d6db;" text="Play with a friend" textFill="#c25b90">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="singlemodebtn" layoutX="47.0" layoutY="196.0" mnemonicParsing="false" onAction="#singleModeButtonPushed" prefHeight="86.0" prefWidth="254.0" style="-fx-background-color:  #e0d6db;" text="Single Mode" textFill="#c25b90">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <GridPane layoutX="24.0" layoutY="14.0" prefHeight="90.0" prefWidth="656.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="598.0" minWidth="10.0" prefWidth="406.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="598.0" minWidth="10.0" prefWidth="165.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="598.0" minWidth="10.0" prefWidth="161.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="598.0" minWidth="0.0" prefWidth="0.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <AnchorPane layoutX="100.0" layoutY="101.0" prefHeight="363.0" prefWidth="650.0" style="-fx-background-color: #757171;">
          <children>
-            <Label text="Tic Tac Toe" textFill="#901f5a" GridPane.rowIndex="2">
+            <ImageView fitHeight="416.0" fitWidth="650.0" layoutY="-2.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../icons/grayone.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="singlemodebtn" layoutX="21.0" layoutY="215.0" mnemonicParsing="false" onAction="#singleModeButtonPushed" prefHeight="71.0" prefWidth="269.0" style="-fx-background-color: #262626;" text="SINGLE PLAYER" textFill="#fcfc04">
                <font>
-                  <Font name="System Bold" size="30.0" />
+                  <Font size="33.0" />
                </font>
+            </Button>
+            <Button fx:id="login" layoutX="347.0" layoutY="215.0" mnemonicParsing="false" onAction="#multiModeButtonPushed" prefHeight="71.0" prefWidth="269.0" style="-fx-background-color: #262626;" text="MULTI PLAYER" textFill="#fcfc04">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Button>
+            <Label layoutX="130.0" layoutY="71.0" text="How You Enjoy Playing?" textFill="#262626">
+               <font>
+                  <Font size="34.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
             </Label>
-            <Button fx:id="logoutbtn" mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="31.0" prefWidth="124.0" style="-fx-background-color: #e0d6db;" text="Logout" textFill="#901f5a" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="profilebtn" mnemonicParsing="false" onAction="#profileButtonPushed" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #e0d6db;" text="Profile" textFill="#901f5a" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
          </children>
-      </GridPane>
+      </AnchorPane>
+      <Button fx:id="logoutbtn" layoutX="768.0" layoutY="14.0" mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="50.0" prefWidth="85.0" style="-fx-background-color: #262626;" text="Logout" textFill="#fcfc04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+	  <Button fx:id="profilebtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#profileButtonPushed" prefHeight="50.0" prefWidth="85.0" style="-fx-background-color: #262626;" text="Profile" textFill="#fcfc04">
+               <font>
+                  <Font size="18.0" />
+               </font>
+        </Button>
    </children>
 </AnchorPane>
