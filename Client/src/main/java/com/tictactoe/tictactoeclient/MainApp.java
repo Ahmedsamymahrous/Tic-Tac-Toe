@@ -3,6 +3,8 @@ package com.tictactoe.tictactoeclient;
 import animatefx.animation.*;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,18 +26,15 @@ public class MainApp extends Application {
         stage.show();
         new FadeIn(root).play();
 
-//
-//        //next
-//        // animation added here
-//        new SlideInRight(root).play();
-//
-//        //back
-//        // animation added here
-//       new SlideInRight(root).play();
-
-        //profile
-//        // animation added here
-//       new SlideInDown(root).play();
+        stage.setOnCloseRequest(e -> {
+            try{
+                super.stop();
+            }catch(Exception ee){
+                ee.getMessage();
+            }
+            Platform.exit();
+            System.exit(0);
+        });
 
     }
 

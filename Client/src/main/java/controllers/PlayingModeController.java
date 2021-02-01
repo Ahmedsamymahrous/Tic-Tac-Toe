@@ -110,8 +110,8 @@ public class PlayingModeController implements Initializable {
 
         window.setScene(scene);
         connectPlayer.serialaize("logout",p);
-        Map<String, Player> elements = connectPlayer.deserialize();
-        System.out.println(elements.values().toArray()[0]);
+       // Map<String, Player> elements = connectPlayer.deserialize();
+        //System.out.println(elements.values().toArray()[0]);
 
         connectPlayer.closeConnection();
         // animation added here

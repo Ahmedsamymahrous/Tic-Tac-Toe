@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="875.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ForgetPassController">
+<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="875.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ForgetPassController">
    <children>
       <ImageView fitHeight="592.0" fitWidth="862.0" layoutX="14.0" layoutY="-3.0" pickOnBounds="true">
          <image>

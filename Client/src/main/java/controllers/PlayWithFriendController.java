@@ -294,6 +294,7 @@ public class PlayWithFriendController implements Initializable {
             resultText.setVisible(true);
             resultText.setTextFill(Paint.valueOf("#7c0006"));
             stopPlay();
+            rematch(player);
         });
     }
     public void weHaveWinner()
@@ -482,7 +483,6 @@ public class PlayWithFriendController implements Initializable {
                             resultText.setVisible(true);
                             resultText.setTextFill(Paint.valueOf("#111111"));
                             stopPlay();
-                            rematch(player);
                         });
                     }else if(elements.keySet().toArray()[0].equals("rematch")){
                         System.out.println("they will start new Game !!!");
@@ -535,8 +535,6 @@ public class PlayWithFriendController implements Initializable {
                                 chatBtn.setTextFill(Paint.valueOf("#32c41b"));
                             }
                         });
-
-
                     }
                 } catch (IOException e) {
                     System.out.println("Lost Connection...");

@@ -82,7 +82,8 @@ public class PlayerConnection {
             socket.close();
         } catch(Exception ex)
         {
-            ex.printStackTrace();
+            //ex.printStackTrace();
+            System.out.println("error closing the connection");
         }
     }
 }
