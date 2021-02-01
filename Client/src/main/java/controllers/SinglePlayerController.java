@@ -8,7 +8,17 @@ package controllers;
 import com.jfoenix.controls.JFXButton;
 import dbconnection.Player;
 import dbconnection.PlayerConnection;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import singleMode.Game;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -224,7 +234,9 @@ public class SinglePlayerController implements Initializable {
     private Rectangle rr9;
 
     @FXML
-    private Rectangle rl9;    
+    private Rectangle rl9;
+    @FXML
+    private JFXButton leaveButton;
     
 
     
@@ -238,12 +250,23 @@ public class SinglePlayerController implements Initializable {
     {
         this.connectPlayer = connectPlayer;
         this.player = player;
-        player1Name.setText(player.getName());                
+
+        RenderData();
+
+        player1Name.setText(player.getName());
         player1MainScore.setText(Integer.toString(player.getMain_score()));
         score_player1.setText("0");
         score_player2.setText("0");
     }
-    
+    private void RenderData()
+    {
+        Platform.runLater(()->
+        {
+            player1Icone.setImage(new Image(getClass().getResourceAsStream("/icons/"+player.getAvatar())));
+            player1MainScore.setText(Integer.toString(player.getMain_score()));
+            player1Name.setText(player.getName());
+        });
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -281,5 +304,26 @@ public class SinglePlayerController implements Initializable {
         button7.setOnMouseReleased(e->{game.play(2,0);});
         button8.setOnMouseReleased(e->{game.play(2,1);});
         button9.setOnMouseReleased(e->{game.play(2,2);});   
-    }   
+    }
+
+    @FXML
+    private void leaveButtonAction(ActionEvent event)  throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxmls/PlayingMode.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        //access the controller and call a method
+        PlayingModeController controller = loader.getController();
+        controller.init(player,connectPlayer);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(scene);
+        window.show();
+    }
+
+
 }
