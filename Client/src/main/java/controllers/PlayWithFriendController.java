@@ -428,10 +428,11 @@ public class PlayWithFriendController implements Initializable {
                                 buttonList.get(Integer.parseInt(move)).setText(friendOption);
                             }
                             buttonSelected.add(buttonList.get(Integer.parseInt(move)));
-                            System.out.println("selected "+ buttonSelected.size());
+                            System.out.println("selected button size"+ buttonSelected.size());
                             buttonList.get(Integer.parseInt(move)).setDisable(true);
                             if(CheckMe(myOption))
                             {
+                                player.setMain_score(player.getMain_score()+5);
                                 connectPlayer.serialaize("win",player);
                                 System.out.println(player.getName() + " Win ::::::::");
                                 weHaveWinner();
@@ -449,6 +450,7 @@ public class PlayWithFriendController implements Initializable {
                             DisapleSelected();
 
                     }else if(elements.keySet().toArray()[0].equals("win")){
+
                         System.out.println("you won + "+ player.getName());
                         Platform.runLater(()->{
                             result.setImage(new Image(getClass().getResourceAsStream("/icons/win.gif")));
@@ -462,6 +464,7 @@ public class PlayWithFriendController implements Initializable {
                     }else if(elements.keySet().toArray()[0].equals("lose")){
                         System.out.println("you lose + "+ player.getName());
                         Platform.runLater(()->{
+                            player2.setMain_score(player2.getMain_score()+5);
                             result.setImage(new Image(getClass().getResourceAsStream("/icons/lose.gif")));
                             result.setVisible(true);
                             resultText.setText("You lose");
@@ -558,13 +561,16 @@ public class PlayWithFriendController implements Initializable {
                 return true;
             }
         }
+        conut = 0;
         for (int j = 0; j < 9; j += 3) {
             conut = 0;
-            for (int i = j; i < 3; i++) {
+            for (int i = j; i < j+3; i++) {
                 if (buttonList.get(i).getText() == option) {
                     conut++;
+                    System.out.println("horizontal check buttons: "+i+" "+buttonList.get(i).getText());
                 }
             }
+            System.out.println("horizontal check count: "+conut);
             if (conut == 3) {
                 return true;
             }
