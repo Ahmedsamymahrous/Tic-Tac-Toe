@@ -89,8 +89,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Contributors
 
-Mohab Rabie
-Islam Reda
-Aya Abdelsamie
-Wesal Mekky
-Ahmed Samy
+* [Mohab Rabie](https://github.com/mohabrabie)
+* [Islam Reda](https://github.com/IslamReda)
+* [Aya Abdelsamie](https://github.com/ayaabdo)
+* [Wesal Mekky](https://github.com/wesalEldsokey)
+* [Ahmed Samy](https://github.com/Ahmedsamymahrous)
