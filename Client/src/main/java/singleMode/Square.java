@@ -4,11 +4,10 @@
  * and open the template in the editor.
  */
 package singleMode;
-import controllers.SinglePlayerController;
 
 
-//import animatefx.animation.BounceIn;
-//import animatefx.animation.Flash;
+import animatefx.animation.BounceIn;
+import animatefx.animation.Flash;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -50,12 +49,12 @@ public class Square
             case O:
                 containerOfX.setVisible(false);
                 containerOfO.setVisible(true);
-//                new BounceIn(containerOfO).play();
+                new BounceIn(containerOfO).play();
                 break;
             case X:
                 containerOfO.setVisible(false);
                 containerOfX.setVisible(true);
-//                new BounceIn(containerOfX).play();
+                new BounceIn(containerOfX).play();
                 break;
             default:
                 containerOfO.setVisible(false);
@@ -74,21 +73,20 @@ public class Square
         displaySquare();
     }
     
-//    public void makeAnimation()
-//    {
-//        if(isWinnerSquare)
-//        {
-//            if(value == Value.O)
-//            {
-//                new Flash(containerOfO).setCycleCount(2).play();
-//            }
-//            else if(value == Value.X)
-//            {
-//                new Flash(containerOfX).setCycleCount(2).play();
-//            }
-//            isWinnerSquare = false;
-//        }
-//    }
+    public void makeAnimation()
+    {
+       if(isWinnerSquare) {
+            if(value == Value.O)
+            {
+                new Flash(containerOfO).setCycleCount(2).play();
+            }
+            else if(value == Value.X)
+               {
+                new Flash(containerOfX).setCycleCount(2).play();
+            }
+            isWinnerSquare = false;
+        }
+    }
 
     
 
@@ -100,7 +98,7 @@ public class Square
     public void setIsWinnerSquare(boolean isWinnerSquare) 
     {
         this.isWinnerSquare = isWinnerSquare;
-//        makeAnimation();
+        makeAnimation();
     }  
     
 }
